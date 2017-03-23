@@ -41,7 +41,12 @@ Date: Thu, 23 Mar 2017 08:21:15 GMT
   ]
 }
 ```
-Or you can also see a result in [web browser](http://localhost:8888/todo/api/v1.0/tasks) too
+
+### POST
+
+```sh
+curl -i -H "Content-Type: application/json" -X POST -d '{"title":"Read a book"}' http://localhost:8888/todo/api/v1.0/tasks
+```
 
 Original
 https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
