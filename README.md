@@ -11,4 +11,8 @@ http://deanhume.com/home/blogpost/a-basic-guide-to-firebase-for-the-web/10142
 https://react.rocks/tag/Firebase
 https://www.airpair.com/firebase/posts/firebase-building-realtime-app
 
+### PYTHON+REST
+https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
+https://realpython.com/blog/python/api-integration-in-python/
+http://python-eve.org/
 
