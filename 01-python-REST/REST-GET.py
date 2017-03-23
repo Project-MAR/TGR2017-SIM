@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
-from posix import abort
+from flask import abort
+from flask import make_response
 
 app = Flask(__name__)
 
@@ -24,6 +25,12 @@ def get_tasks(task_id):
     if len(task) == 0:
         abort(404)
     return jsonify({'task':task[0]})
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
 
 if __name__ == '__main__':
     app.run(port=8888, debug=True)
