@@ -41,6 +41,7 @@ Date: Thu, 23 Mar 2017 08:21:15 GMT
   ]
 }
 ```
+Or you can also see a result in [web browser](http://localhost:8888/todo/api/v1.0/tasks) too
 
 Original
 https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
