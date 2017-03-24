@@ -259,6 +259,58 @@ Date: Fri, 24 Mar 2017 02:23:57 GMT
 
 ```
 
+### Basic Authentication for REST
+
+https://github.com/miguelgrinberg/flask-httpauth
+
+```sh
+sudo pip3 install flask-httpauth
+```
+
+Test with normal access to print all task
+```sh
+project-mar@NB:~$ curl -i http://localhost:8888/todo/api/v1.0/tasks
+HTTP/1.0 401 UNAUTHORIZED
+Content-Type: application/json
+WWW-Authenticate: Basic realm="Authentication Required"
+Content-Length: 37
+Server: Werkzeug/0.12.1 Python/3.5.2
+Date: Fri, 24 Mar 2017 03:17:10 GMT
+
+{
+  "error": "Unauthorized access"
+}
+```
+
+Test with access account
+```sh
+curl -u root:root -i http://localhost:8888/todo/api/v1.0/tasks 
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 317
+Server: Werkzeug/0.12.1 Python/3.5.2
+Date: Fri, 24 Mar 2017 03:17:25 GMT
+
+{
+  "tasks": [
+    {
+      "description": "Milk, Cheese, Pizza, Fruit, Tylenol", 
+      "done": false, 
+      "id": 1, 
+      "title": "Buy groceries"
+    }, 
+    {
+      "description": "Need to find a good Python tutorial on the web", 
+      "done": false, 
+      "id": 2, 
+      "title": "Learn Python"
+    }
+  ]
+}
+```
+
+TODO: Digest Access Authentication
+
 Original
 https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 
