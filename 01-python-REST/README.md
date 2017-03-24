@@ -311,7 +311,33 @@ Date: Fri, 24 Mar 2017 03:17:25 GMT
 
 TODO: Digest Access Authentication
 
+### Webhook
+
+> run webHookBasic.py to test webhook mechanism
+
+Webhooks are "user-defined HTTP callbacks mechanism. They are triggered by some event, and perform some other event. For webHookBasic.py, it receive json from client and then echo data back to user, 
+
+Create POST method
+```sh
+curl -H "Content-Type: application/json" -X POST -d '{"data": "This is some test data"}' -i http://localhost:8888/webhook
+```
+
+Result
+```sh
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 51
+Server: Werkzeug/0.12.1 Python/3.5.2
+Date: Fri, 24 Mar 2017 04:21:40 GMT
+
+{
+  "echo from server": "This is some test data"
+}
+```
+
 Original
 https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 
+Webhook
+https://ogma-dev.github.io/posts/simple-flask-webhook/
 
