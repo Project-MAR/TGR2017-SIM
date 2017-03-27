@@ -29,8 +29,9 @@ How to install the OpenOCD binaries [here](http://gnuarmeclipse.github.io/openoc
 gnuarmeclipse/openocd/releases [here](https://github.com/gnuarmeclipse/openocd/releases)   
 STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink [here](http://www.hertaville.com/stm32f0discovery-part-1-linux.html)   
 
-https://github.com/LieBtrau/Aiakos/wiki/STM32L053-Nucleo-toolchain-setup   
-http://wiki.robolabo.etsit.upm.es/index.php/Nucleo_Boards   
+openocd + st-link setup (work) [here](https://github.com/LieBtrau/Aiakos/wiki/STM32L053-Nucleo-toolchain-setup)   
+mbed-os [here](https://github.com/ARMmbed/mbed-os)   
+Nucleo Boards [here](http://wiki.robolabo.etsit.upm.es/index.php/Nucleo_Boards)   
 
 
 
