@@ -23,11 +23,15 @@ http://python-eve.org/
 Setting up a GCC/Eclipse toolchain for STM32Nucleo [here](http://www.carminenoviello.com/2014/12/28/setting-gcceclipse-toolchain-stm32nucleo-part-1/)   
 Update ST Link firmware [here](http://www.st.com/en/embedded-software/stsw-link007.html)   
 stlink linux driver [here](https://github.com/texane/stlink)   
-The J-Link debugging Eclipse plug-in [here](http://gnuarmeclipse.github.io/debug/jlink/)
+The J-Link debugging Eclipse plug-in [here](http://gnuarmeclipse.github.io/debug/jlink/)   
 Tutorial: Using Eclipse + ST-LINK/v2 + OpenOCD to debug [here](https://community.particle.io/t/tutorial-using-eclipse-st-link-v2-openocd-to-debug/10042)   
 How to install the OpenOCD binaries [here](http://gnuarmeclipse.github.io/openocd/install/)   
 gnuarmeclipse/openocd/releases [here](https://github.com/gnuarmeclipse/openocd/releases)   
 STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink [here](http://www.hertaville.com/stm32f0discovery-part-1-linux.html)   
+
+https://github.com/LieBtrau/Aiakos/wiki/STM32L053-Nucleo-toolchain-setup   
+http://wiki.robolabo.etsit.upm.es/index.php/Nucleo_Boards   
+
 
 
 ST LINK Under linux problems
