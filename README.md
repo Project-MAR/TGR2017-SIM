@@ -24,6 +24,20 @@ Setting up a GCC/Eclipse toolchain for STM32Nucleo [here](http://www.carminenovi
 Update ST Link firmware [here](http://www.st.com/en/embedded-software/stsw-link007.html)   
 stlink linux driver [here](https://github.com/texane/stlink)   
 The J-Link debugging Eclipse plug-in [here](http://gnuarmeclipse.github.io/debug/jlink/)
+Tutorial: Using Eclipse + ST-LINK/v2 + OpenOCD to debug [here](https://community.particle.io/t/tutorial-using-eclipse-st-link-v2-openocd-to-debug/10042)   
+How to install the OpenOCD binaries [here](http://gnuarmeclipse.github.io/openocd/install/)   
+gnuarmeclipse/openocd/releases [here](https://github.com/gnuarmeclipse/openocd/releases)   
+STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink [here](http://www.hertaville.com/stm32f0discovery-part-1-linux.html)   
+
+
+ST LINK Under linux problems
+For info the original ST-LINK enumerates using the mass storage usb class; however, its
+implementation is completely broken. The result is this causes issues under Linux. The
+simplest solution is to get Linux to ignore the ST-LINK using one of the following methods:
+- modprobe -r usb-storage && modprobe usb-storage quirks=483:3744:i
+- add "options usb-storage quirks=483:3744:i" to /etc/modprobe.conf  
+
+
 
  
 
