@@ -32,7 +32,7 @@ STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchai
 openocd + st-link setup [here](https://github.com/LieBtrau/Aiakos/wiki/STM32L053-Nucleo-toolchain-setup)   
 gnuarmeclipse/openocd/releases [here](https://github.com/gnuarmeclipse/openocd/releases)   
 mbed-os [here](https://github.com/ARMmbed/mbed-os)   
-bed_NucleoL053R8 [here](https://github.com/Hotboards/mbed_NucleoL053R8)   
+mbed_NucleoL053R8 [here](https://github.com/Hotboards/mbed_NucleoL053R8)   
 GNU ARM Embedded Toolchain [here](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)   
 
 
