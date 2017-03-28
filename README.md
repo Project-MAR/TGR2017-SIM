@@ -1,5 +1,14 @@
 # temp
 
+Install JDK
+```sh
+sudo apt-get install default-jdk
+```
+
+Installl Eclipse Neon 3 (download [here](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)) using C/C++ for default workspace.   
+   
+
+
 ### Line bot
 https://github.com/line/line-bot-sdk-python
 https://kittinanx.blogspot.com/2016/10/line-bot.html
