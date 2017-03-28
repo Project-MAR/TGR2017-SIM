@@ -15,6 +15,9 @@ sudo apt-get install default-jdk
 Test and make sure you can connect to gdb server on STM32 board via openOCD!!!   
 
 6. Setup Eclipse + GCC + FreeRTOS for STM32
+https://sourceforge.net/projects/freertos/?source=typ_redirect   
+https://www.embarcados.com.br/gnu-arm-cross-toolchain-eclipse-freertos-gcc-parte-1/   
+http://www.carminenoviello.com/2015/06/22/running-freertos-stm32nucleo-free-gcceclipse-toolchain/   
 
 
 
