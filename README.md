@@ -1,12 +1,21 @@
 # temp
 
-Install JDK
+1. Install JDK
 ```sh
 sudo apt-get install default-jdk
 ```
 
-Installl Eclipse Neon 3 (download [here](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)) using C/C++ for default workspace.   
+2. Installl Eclipse Neon 3 (download [here](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)) using C/C++ for default workspace.   
    
+3. Install the GNU ARM plug-ins for Eclipse (via Eclipse Marketplace [here](https://marketplace.eclipse.org/content/gnu-arm-eclipse))   
+
+4. Install GCC for ARM here (here)[https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads]   
+
+5. Setup openOCD v0.10.0, Use pre-build binary from [here](https://github.com/gnuarmeclipse/openocd/releases)   
+Test and make sure you can connect to gdb server on STM32 board via openOCD!!!   
+
+6. Setup Eclipse + GCC + FreeRTOS for STM32
+
 
 
 ### Line bot
@@ -38,6 +47,7 @@ How to install the OpenOCD binaries [here](http://gnuarmeclipse.github.io/openoc
 STM32F0Discovery Under Linux Tutorial Part 1 – Setting up the GCC ARM Toolchain, OpenOCD and stlink [here](http://www.hertaville.com/stm32f0discovery-part-1-linux.html)   
    
 (work)   
+The GNU ARM Eclipse plug-ins [here](https://github.com/gnuarmeclipse/plug-ins)
 openocd + st-link setup [here](https://github.com/LieBtrau/Aiakos/wiki/STM32L053-Nucleo-toolchain-setup)   
 gnuarmeclipse/openocd/releases [here](https://github.com/gnuarmeclipse/openocd/releases)   
 mbed-os [here](https://github.com/ARMmbed/mbed-os)   
