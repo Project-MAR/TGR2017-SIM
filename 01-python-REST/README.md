@@ -335,6 +335,11 @@ Date: Fri, 24 Mar 2017 04:21:40 GMT
 }
 ```
 
+curl template
+```sh
+curl -i http://localhost/task -X POST -u user:pass -H "Content-Type:application/json" -d '{"key":"data"}'
+```
+
 Original
 https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 

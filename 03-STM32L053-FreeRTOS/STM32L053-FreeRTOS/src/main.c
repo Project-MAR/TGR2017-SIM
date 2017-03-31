@@ -43,44 +43,66 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32l0xx_hal.h"
-#include "cmsis_os.h"
 
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "timers.h"
+#include "queue.h"
+#include "semphr.h"
+#include "event_groups.h"
 
 /* Private variables ---------------------------------------------------------*/
-osThreadId defaultTaskHandle;
+QueueHandle_t qh = 0;
 
-/* USER CODE BEGIN PV */
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
-void StartDefaultTask(void const * argument);
 
-/* USER CODE BEGIN PFP */
-/* Private function prototypes -----------------------------------------------*/
+void LedBlink(void* p);
+void UARTrx(void* p);
+void UARTtx(void* p);
 
-/* USER CODE END PFP */
+/* StartDefaultTask function */
+void LedBlink(void* p)
+{
+    while(1)
+    {
+    	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+        vTaskDelay(100);
+    }
+}
 
-/* USER CODE BEGIN 0 */
+void UARTtx(void* p)
+{
+    int myInt = 0;
+    while(1)
+    {
+        myInt++;
+        if(!xQueueSend(qh, &myInt, 500)) {
+            //puts("Failed to send item to queue within 500ms");
+        }
+        vTaskDelay(1000);
+    }
+}
 
-/* USER CODE END 0 */
+void UARTrx(void* p)
+{
+    int myInt = 0;
+    while(1)
+    {
+        if(!xQueueReceive(qh, &myInt, 1000)) {
+            //puts("Failed to receive item within 1000 ms");
+        }
+        else {
+            //printf("Received: %u\n", myInt);
+        }
+    }
+}
 
 int main(void)
 {
-
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration----------------------------------------------------------*/
-
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
@@ -90,52 +112,29 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
 
-  /* USER CODE BEGIN 2 */
+  qh = xQueueCreate(1, sizeof(int));
 
-  /* USER CODE END 2 */
+  xTaskCreate(LedBlink, (signed char*)"task_LedBlink", 5, 0, 0, 0);
+  xTaskCreate(UARTtx,   (signed char*)"task_UARTtx"  , 5, 0, 1, 0);
+  //xTaskCreate(UARTrx,   (signed char*)"task_UARTrx"  , 5, 0, 2, 0);
 
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
-
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
-
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
  
-
   /* Start scheduler */
-  osKernelStart();
+  vTaskStartScheduler();
   
   /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
-  /* USER CODE END WHILE */
-
-  /* USER CODE BEGIN 3 */
 
   }
-  /* USER CODE END 3 */
-
 }
 
 /** System Clock Configuration
@@ -231,24 +230,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-}
-
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
-
-/* StartDefaultTask function */
-void StartDefaultTask(void const * argument)
-{
-
-  /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-    osDelay(1000);
-  }
-  /* USER CODE END 5 */ 
 }
 
 /**
