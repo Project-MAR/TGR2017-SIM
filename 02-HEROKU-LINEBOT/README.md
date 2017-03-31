@@ -70,11 +70,35 @@ except LineBotApiError as e:
 #### 3. Push message
  - Shell
 ```sh
-
+curl -X POST \
+-H 'Content-Type:application/json' \
+-H 'Authorization: Bearer {ENTER_ACCESS_TOKEN}' \
+-d '{
+    "to": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "messages":[
+        {
+            "type":"text",
+            "text":"Hello, world1"
+        },
+        {
+            "type":"text",
+            "text":"Hello, world2"
+        }
+    ]
+}' https://api.line.me/v2/bot/message/push
 ```
  - In Python (with message API)
 ```python
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
+from linebot.exceptions import LineBotApiError
 
+line_bot_api = LineBotApi('<channel access token>')
+
+try:
+    line_bot_api.push_message('<to>', TextSendMessage(text='Hello World!'))
+except LineBotApiError as e:
+    # error handle
 ```
 
 #### 4. Multicast
