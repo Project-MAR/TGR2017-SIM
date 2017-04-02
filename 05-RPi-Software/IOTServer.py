@@ -1,4 +1,5 @@
-import os
+#!usr/bin/python2.7
+
 import json, requests, base64
 
 # curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"key":"value"}'
