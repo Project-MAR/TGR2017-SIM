@@ -1,16 +1,15 @@
-#!/usr/bin/python2.7
-
 import os
 import json, requests, base64
-import urllib
 
-# curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"a":"animations"}'
+# curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"key":"value"}'
 
 HEROKU_Server = 'https://projectmar-bridge.herokuapp.com/PItoLINE'
 #HEROKU_Server = 'http://localhost:5000/PItoLINE'
 
 usernameDB = os.environ.get('LoginDB')
 passwordDB = os.environ.get('PasswordDB')
+#print(usernameDB)
+#print(passwordDB)
 
 authMSG = (usernameDB, passwordDB)
 #print('authMSG: ',authMSG)
@@ -26,9 +25,9 @@ def PItoLINE(url, payload, payloadType='text'):
 	}
 
 	resp = requests.post(url, auth=authMSG, data=json.dumps(messageToLINE), headers=headerMSG)
-	return resp
+	return resp.text
 
-PItoLINE(HEROKU_Server, 'animations', payloadType='text')
+PItoLINE(HEROKU_Server, 'test message', payloadType='text')
 
 
 messageToLINE = {
