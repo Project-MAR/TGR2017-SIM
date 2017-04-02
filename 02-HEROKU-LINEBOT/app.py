@@ -13,8 +13,23 @@ from linebot.models import (
 
 import os, requests, json
 
+import psycopg2, urlparse
+
 app = Flask(__name__)
 auth = HTTPBasicAuth()
+
+
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
+
 
 UserUID = ''
 
@@ -26,8 +41,6 @@ passwordDB = os.environ.get('PasswordDB')
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
-
-LineToPiCMDLists = []
 
 CommandLists = []
 CommandLists.append('1.Help\n')
@@ -79,7 +92,6 @@ def callback():
 def handle_message(event):
     global UserUID
     global CommandLists
-    global LineToPiCMDLists
     text = event.message.text #message from user
     json_line = request.get_json()
     json_line = json.dumps(json_line)
@@ -100,7 +112,6 @@ def handle_message(event):
     elif text[:3] == 'L2P':
         cmd, target, action = text.split(':')
         replayText =  cmd + '\n' + target + '\n' + action
-        LineToPiCMDLists.append(text)
 
     else:
         replayText = 'Process other cmd'
@@ -118,53 +129,73 @@ def GETUID():
 @app.route('/PItoLINE', methods=['POST'])
 @auth.login_required
 def PItoLINE():
-    global LineToPiCMDLists
-
     try:
+
         RAMID = os.environ.get('RAMID')
         messageToLINE = request.get_json()
         messageToLINE = json.dumps(messageToLINE)
         line_bot_api.push_message(RAMID, TextSendMessage(text=messageToLINE))
-        
-        # check if there has a massage to pass to RPi
-        if len(LineToPiCMDLists) != 0:
-            return (str(len(LineToPiCMDLists)) + ':MSG')
-        else:
-            return  'NOMSG'
+        return messageToLINE
 
     except LineBotApiError as e:
         return json.dumps({"ERROR":e})
-'''
-TEST Message
-{"Device": "PANNEL1", "Status": {"SWITCH": {"S3": "OFF", "S2": "NO", "S1": "NO"}, "LED": {"L2": "NO", "L3": "Null", "L1": "OFF"}}}
-curl -i https://projectmar-bot.herokuapp.com/PItoLINE -X POST -u ProjectMAR:animations -H "Content-Type:application/json" -d '{"Device": "PANNEL1", "Status": {"SWITCH": {"S3": "OFF", "S2": "NO", "S1": "NO"}, "LED": {"L2": "NO", "L3": "Null", "L1": "OFF"}}}
-'''
 
 @app.route('/check', methods=['GET'])
 @auth.login_required
 def check():
-    global LineToPiCMDLists
-    if len(LineToPiCMDLists) != 0:
-        replyMsg = LineToPiCMDLists[0]
-        del LineToPiCMDLists[0]
-        return replyMsg
-    else:
-        return 'NOMSG'
+    return 'check'
+
+@app.route('/pushIMG', methods=['POST'])
+@auth.login_required
+def pushIMG():
+
+    RAMID = os.environ.get('RAMID')
+    img = os.environ.get('img')
+    img_tn = os.environ.get('img_tn')
+
+    try:
+        url = 'https://api.line.me/v2/bot/message/push'
+        
+        headers = {
+            'Content-Type'  :'application/json',
+            'Authorization' : 'Bearer {' + CHANNEL_ACCESS_TOKEN + '}'
+        }
+        
+        payload = {
+            'to'       : RAMID,
+            'messages'  : [
+                {
+                    'type'               : 'image',
+                    'originalContentUrl' : img,
+                    'previewImageUrl'    : img_tn
+                }
+            ]
+        }
+
+        r = requests.post(url,headers=headers, data=json.dumps(payload))
+        return r.text
+
+    except LineBotApiError as e:
+        return json.dumps({"ERROR":e})
 
 @app.route('/debugMSG', methods=['GET'])
 def debugMSG():
-    global LineToPiCMDLists
-    replyMsg = ''
-    for i in range(0, len(LineToPiCMDLists)):
-        replyMsg += (LineToPiCMDLists[i] + '\n')
-
-    return replyMsg
-
+    return 'DEBUG'
 
 
 if __name__ == "__main__":
     app.run()
 
-    #LineToPiCMDLists.append('L2P:1:1')
-    #LineToPiCMDLists.append('L2P:2:2')
-    #LineToPiCMDLists.append('L2P:3:3')
+
+
+'''
+TEST Message
+
+LineToPiCMDLists.append('L2P:1:1')
+LineToPiCMDLists.append('L2P:2:2')
+LineToPiCMDLists.append('L2P:3:3')
+
+
+{"Device": "PANNEL1", "Status": {"SWITCH": {"S3": "OFF", "S2": "NO", "S1": "NO"}, "LED": {"L2": "NO", "L3": "Null", "L1": "OFF"}}}
+curl -i https://projectmar-bot.herokuapp.com/PItoLINE -X POST -u ProjectMAR:animations -H "Content-Type:application/json" -d '{"Device": "PANNEL1", "Status": {"SWITCH": {"S3": "OFF", "S2": "NO", "S1": "NO"}, "LED": {"L2": "NO", "L3": "Null", "L1": "OFF"}}}
+'''
