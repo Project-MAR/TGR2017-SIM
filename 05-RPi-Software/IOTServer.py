@@ -4,16 +4,13 @@ import os
 import json, requests, base64
 import urllib
 
-# curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u ProjectMAR:animations -H "Content-Type:application/json" -d '{"a":"animations"}'
+# curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"a":"animations"}'
 
-#HEROKU_Server = 'https://projectmar-bridge.herokuapp.com/PItoLINE'
-HEROKU_Server = 'http://localhost:5000/PItoLINE'
+HEROKU_Server = 'https://projectmar-bridge.herokuapp.com/PItoLINE'
+#HEROKU_Server = 'http://localhost:5000/PItoLINE'
 
 usernameDB = os.environ.get('LoginDB')
 passwordDB = os.environ.get('PasswordDB')
-
-usernameDB = 'ProjectMAR'
-passwordDB = 'animations'
 
 authMSG = (usernameDB, passwordDB)
 #print('authMSG: ',authMSG)
@@ -21,7 +18,6 @@ authMSG = (usernameDB, passwordDB)
 
 def PItoLINE(url, payload, payloadType='text'):
 	
-	global authMSG
 	headerMSG = {'content-type': 'application/json'}
 
 	messageToLINE = {
@@ -30,9 +26,7 @@ def PItoLINE(url, payload, payloadType='text'):
 	}
 
 	resp = requests.post(url, auth=authMSG, data=json.dumps(messageToLINE), headers=headerMSG)
-	print(resp)
 	return resp
-
 
 PItoLINE(HEROKU_Server, 'animations', payloadType='text')
 
@@ -46,6 +40,9 @@ tempJSON = json.dumps(messageToLINE)
 #print(tempJSON)
 
 tempDict = json.loads(tempJSON)
+
+
+
 #print(tempDict['Type'])
 
 #data = img_file.read()        
