@@ -129,4 +129,4 @@ import json
 image = base64.decodestring(json.dumps(data)['image'])
 ```
 
-
+http://zetcode.com/db/postgresqlpythontutorial/
