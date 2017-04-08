@@ -40,10 +40,10 @@ extern "C"
 #endif
 
   extern void
-  vPortSVCHandler (void);
+  SVC_Handler (void);
 
   extern void
-  xPortPendSVHandler (void);
+  PendSV_Handler (void);
   extern void
   SysTick_Handler (void);
 
