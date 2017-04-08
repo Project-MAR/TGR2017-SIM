@@ -3,3 +3,5 @@ flask_httpauth
 gunicorn
 requests
 line-bot-sdk
+psycopg2
+dropbox
