@@ -1,76 +1,152 @@
 #!/usr/bin/python2.7
-
+import os
 import json, requests, base64
+from datetime import datetime
 
 # curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"key":"value"}'
 
-HEROKU_Server = 'https://projectmar-bot.herokuapp.com/PItoLINE'
-#HEROKU_Server = 'http://localhost:5000/PItoLINE'
+#Server = 'https://projectmar-bot.herokuapp.com/'
+Server = 'http://localhost:5000/'
 
-#usernameDB = os.environ.get('LoginDB')
-#passwordDB = os.environ.get('PasswordDB')
+page_PItoLINE    	  = 'PItoLINE'
+page_pushIMG          = 'pushIMG'
+page_pushImgDB        = 'pushImgDB'
+page_pushDataLoggerDB = 'pushDataLoggerDB'
+page_showLogger       = 'showLoggerDB'
+page_showImgDB        = 'showImgDB'
+page_showCMDListDB    = 'showCMDListDB'
+page_dropAllDB        = 'dropAllDB'
 
-usernameDB = 'ProjectMAR'
-passwordDB = 'animations'
 
+ProjectPATH = os.path.dirname(__file__)
+secretInfo = open(ProjectPATH + '/.env', "r")
+data = secretInfo.readlines()
+#print(data)
+for line in data:
+	line = line.replace('\n','')
+	#print(line)
+
+	# Try to split var=value by finding index of '='
+	# can be more than one '=' in each line, So we use first index we found
+	findSplitInsex = [pos for pos, char in enumerate(line) if char == '=']
+	#print(findSplitInsex)
+
+	var   = line[:findSplitInsex[0]]
+	value = line[findSplitInsex[0] + 2:len(line)-1]
+	#print(var, value)
+
+	# Load into variable
+	if var == 'LoginDB':
+		usernameDB = value
+	elif var == 'PasswordDB':
+		passwordDB = value
+
+secretInfo.close()
 #print(usernameDB)
 #print(passwordDB)
 
 authMSG = (usernameDB, passwordDB)
-#print('authMSG: ',authMSG)
 
+'''
+---------------------------------------------------------------------------------------------------
+***************************************************************************************************
+'''
 
-def PItoLINE(url, payload, payloadType='text'):
+def PItoLINE(url, authMSG, payload, payloadType='text'):
 	
 	headerMSG = {'content-type': 'application/json'}
 
-	messageToLINE = {
+	message = {
 		'Type'    :payloadType,
 		'Payload' : payload 
 	}
 
-	#resp = requests.post(url, auth=authMSG, headers=headerMSG, data=json.dumps(messageToLINE))
-	resp = requests.post(url, data=json.dumps(messageToLINE), headers=headerMSG, auth=authMSG)
-	print  resp.text
-	return resp.text
-
-PItoLINE(HEROKU_Server, 'test message', payloadType='text')
+	resp = requests.post(url, data=json.dumps(message), headers=headerMSG, auth=authMSG)
+	return  resp.json()
 
 
-messageToLINE = {
-		'Type'    :"payloadType",
-		'Payload' : "payload" 
+def pushDataLoggerDB(url, authMSG, SensorName, SensorValue, StampTIME):
+
+	headerMSG = {'content-type': 'application/json'}
+
+	message = {
+		'Name'      : SensorName,
+		'Value'     : SensorValue,
+		'StampTIME' : StampTIME 
 	}
 
-tempJSON = json.dumps(messageToLINE)
-#print(tempJSON)
-
-tempDict = json.loads(tempJSON)
+	resp = requests.post(url, data=json.dumps(message), headers=headerMSG, auth=authMSG)
+	return  resp.json()
 
 
+def pushImgDB(url, authMSG, data, data_tn, StampTIME):
+	
+	headerMSG = {'content-type': 'application/json'}
 
-#print(tempDict['Type'])
+	image    = data.encode('base64')
+	image_tn = data_tn.encode('base64')
 
-#data = img_file.read()        
+	message = {
+		'image'     : image,
+		'image_tn'  : image_tn,
+		'StampTIME' : StampTIME
+	}
 
-# build JSON object
-#outjson = {}
-#outjson['img'] = data.encode('base64')   # data has to be encoded base64
+	resp = requests.post(url, data=json.dumps(message), headers=headerMSG, auth=authMSG)
+	return  resp.json()
 
-#outjson['leaf'] = "leaf"
-#json_data = json.dumps(outjson)
 
-# close file pointer and send data
-#img_file.close()
+def showDB(url, authMSG):
 
-#print(json_data)
+	resp = requests.get(url, auth=authMSG)
+	return  resp.json()
 
-#PItoLINE(HEROKU_Server, 'payload')
+'''
+---------------------------------------------------------------------------------------------------
+***************************************************************************************************
+'''
+
+StampTIME = datetime.now()
+StampTIME.replace(microsecond=0)
 
 
 '''
-projectDir = os.path.dirname(__file__)
-img_file = open(projectDir + '/img/test.jpg', "r")
-print(projectDir + '/img/test.jpg')
+#---------------------------------------------------------------------------------------------------
+# Test Push message to line
+#result = PItoLINE(Server + page_PItoLINE, authMSG, 'APPLE', payloadType='text')
+#print(result)
+'''
 
+'''
+#---------------------------------------------------------------------------------------------------
+# Test Push iamge to database and line
+imagePATH = os.path.dirname(__file__)
+img_file = open(imagePATH + '/img/test01.jpg', "r")
+data = img_file.read()
+
+img_file = open(imagePATH + '/img/test01_tn.jpg', "r")
+data_tn = img_file.read()
+
+url = Server + page_pushImgDB
+result = pushImgDB(url, authMSG, data, data_tn, str(StampTIME))
+print(result)
+
+img_file.close()
+img_file.close()
+'''
+
+'''
+#---------------------------------------------------------------------------------------------------
+# Test push data to Data Logger Database
+url = Server + page_pushDataLoggerDB
+result = pushDataLoggerDB(url, authMSG, 'sensor1', 123, str(StampTIME))
+print(result)
+'''
+
+'''
+#---------------------------------------------------------------------------------------------------
+# Test Show Data Logger Database
+url = Server + page_dropAllDB
+result = showDB(url, authMSG)
+print(result)
 '''
