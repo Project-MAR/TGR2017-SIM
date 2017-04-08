@@ -552,7 +552,7 @@ UsageFault_Handler_C (ExceptionStackFrame* frame __attribute__((unused)),
 #endif
 
 void __attribute__ ((section(".after_vectors"),weak))
-vPortSVCHandler (void)
+SVC_Handler (void)
 {
 #if defined(DEBUG)
   __DEBUG_BKPT();
@@ -578,7 +578,7 @@ DebugMon_Handler (void)
 #endif
 
 void __attribute__ ((section(".after_vectors"),weak))
-xPortPendSVHandler (void)
+PendSV_Handler (void)
 {
 #if defined(DEBUG)
   __DEBUG_BKPT();
