@@ -44,8 +44,15 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-
+void HardFault_Handler(void);
+void MemManage_Handler(void);
+void BusFault_Handler(void);
+void UsageFault_Handler(void);
+void DebugMon_Handler(void);
 void SysTick_Handler(void);
+void USARTx_IRQHandler(void);
+void EXTI4_15_IRQHandler(void);
+
 
 #ifdef __cplusplus
 }

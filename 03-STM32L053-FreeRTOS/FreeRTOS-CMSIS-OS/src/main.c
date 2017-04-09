@@ -41,21 +41,31 @@
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
 #include "stm32l0xx_hal.h"
 #include "cmsis_os.h"
 
 /* Private variables ---------------------------------------------------------*/
-osThreadId defaultTaskHandle;
+osThreadId modbusTaskTaskHandle;
 osThreadId task1Handle;
 osThreadId task2Handle;
+
+
+UART_HandleTypeDef Uart1Handle;
+__IO ITStatus Uart1Ready = RESET;
+
+/* Buffer used for transmission */
+uint8_t aTxBuffer[] = " ****UART_TwoBoards_ComIT****  ****UART_TwoBoards_ComIT****  ****UART_TwoBoards_ComIT**** ";
+
+/* Buffer used for reception */
+uint8_t aRxBuffer[RXBUFFERSIZE];
+
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
 
-void StartDefaultTask(void const * argument);
+void ModBusTask(void const * argument);
 void StartTASK1(void const * argument);
 void StartTASK2(void const * argument);
 
@@ -81,13 +91,13 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(ModBus, ModBusTask, osPriorityNormal, 0, 128);
   osThreadDef(task1, StartTASK1, osPriorityNormal, 0, 128);
   osThreadDef(task2, StartTASK2, osPriorityNormal, 0, 128);
 
-  defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
-  task1Handle       = osThreadCreate(osThread(task1)      , NULL);
-  task2Handle       = osThreadCreate(osThread(task2)      , NULL);
+  modbusTaskTaskHandle = osThreadCreate(osThread(ModBus)     , NULL);
+  task1Handle          = osThreadCreate(osThread(task1)      , NULL);
+  task2Handle          = osThreadCreate(osThread(task2)      , NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -165,6 +175,8 @@ void SystemClock_Config(void)
         * EXTI
      PA2   ------> USART2_TX
      PA3   ------> USART2_RX
+     PA9   ------> USART1_TX
+     PA10   ------> USART1_RX
 */
 static void MX_GPIO_Init(void)
 {
@@ -200,11 +212,57 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
+
+  /*Configure GPIO pins : PA9 PA10 */
+  GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF4_USART1;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
 }
 
-/* StartDefaultTask function */
-void StartDefaultTask(void const * argument)
+
+void ModBusTask(void const * argument)
 {
+  /*##-1- Configure the UART peripheral ######################################*/
+  /* Put the USART peripheral in the Asynchronous mode (UART Mode) */
+  /* UART1 configured as follow:
+  - Word Length = 8 Bits
+  - Stop Bit = One Stop bit
+  - Parity = None
+  - BaudRate = 9600 baud
+  - Hardware flow control disabled (RTS and CTS signals) */
+  Uart1Handle.Instance        = USARTx;
+  Uart1Handle.Init.BaudRate   = 9600;
+  Uart1Handle.Init.WordLength = UART_WORDLENGTH_8B;
+  Uart1Handle.Init.StopBits   = UART_STOPBITS_1;
+  Uart1Handle.Init.Parity     = UART_PARITY_NONE;
+  Uart1Handle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
+  Uart1Handle.Init.Mode       = UART_MODE_TX_RX;
+
+  if(HAL_UART_Init(&Uart1Handle) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /* The board receives the message and sends it back */
+
+  /*##-2- Put UART peripheral in reception process ###########################*/
+  if(HAL_UART_Receive(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE, 5000) != HAL_OK)
+  {
+    //Error_Handler();
+  }
+
+  /*##-3- Start the transmission process #####################################*/
+  /* While the UART in reception process, user can transmit data through
+     "aTxBuffer" buffer */
+  if(HAL_UART_Transmit(&Uart1Handle, (uint8_t*)aTxBuffer, TXBUFFERSIZE, 5000)!= HAL_OK)
+  {
+    //Error_Handler();
+  }
+
   for(;;)
   {
 	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
@@ -230,6 +288,44 @@ void StartTASK2(void const * argument)
   }
 }
 
+/**
+  * @brief  Tx Transfer completed callback
+  * @param  UartHandle: UART handle.
+  * @note   This example shows a simple way to report end of IT Tx transfer, and
+  *         you can add your own implementation.
+  * @retval None
+  */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *Uart1Handle)
+{
+  /* Set transmission flag: trasfer complete*/
+  Uart1Ready = SET;
+}
+
+/**
+  * @brief  Rx Transfer completed callback
+  * @param  UartHandle: UART handle
+  * @note   This example shows a simple way to report end of IT Rx transfer, and
+  *         you can add your own implementation.
+  * @retval None
+  */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *Uart1Handle)
+{
+  /* Set transmission flag: trasfer complete*/
+  Uart1Ready = SET;
+}
+/**
+  * @brief  UART error callbacks
+  * @param  UartHandle: UART handle
+  * @note   This example shows a simple way to report transfer error, and you can
+  *         add your own implementation.
+  * @retval None
+  */
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
+{
+  while(1)
+  {
+  }
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.
