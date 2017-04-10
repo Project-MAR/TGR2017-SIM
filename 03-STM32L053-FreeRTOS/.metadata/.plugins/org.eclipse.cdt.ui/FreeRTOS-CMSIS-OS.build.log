@@ -1,4 +1,4 @@
-23:53:30 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+20:36:07 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
 make all 
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
@@ -7,5 +7,5 @@ arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
 Finished building: FreeRTOS-CMSIS-OS.siz
  
 
-23:53:30 Build Finished (took 214ms)
+20:36:08 Build Finished (took 714ms)
 

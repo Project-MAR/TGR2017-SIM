@@ -3,6 +3,8 @@ import os
 import json, requests, base64
 from datetime import datetime
 
+#import serial
+
 # curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"key":"value"}'
 
 #Server = 'https://projectmar-bot.herokuapp.com/'
@@ -19,9 +21,9 @@ page_dropAllDB        = 'dropAllDB'
 
 
 ProjectPATH = os.path.dirname(__file__)
-secretInfo = open(ProjectPATH + '/.env', "r")
+secretInfo = open('~/.env', "r")
 data = secretInfo.readlines()
-#print(data)
+print(data)
 for line in data:
 	line = line.replace('\n','')
 	#print(line)
@@ -108,7 +110,17 @@ def showDB(url, authMSG):
 
 StampTIME = datetime.now()
 StampTIME.replace(microsecond=0)
+'''
+ser = serial.Serial(port='dev/ttyAMA0',
+					baudrate = 9600,
+					parity=serial.PARITY_NONE,
+					stopbits=serial.STOPBITS_ONE,
+               		bytesize=serial.EIGHTBITS,
+               		timeout=1
+					)
 
+#ser.write('ProjectMAR\r\n')
+'''
 
 '''
 #---------------------------------------------------------------------------------------------------

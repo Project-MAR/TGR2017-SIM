@@ -473,3 +473,11 @@ arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
   42244	   2632	   4108	  48984	   bf58	FreeRTOS-CMSIS-OS.elf
 Finished building: FreeRTOS-CMSIS-OS.siz
  
+20:36:07 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42244	   2632	   4108	  48984	   bf58	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
