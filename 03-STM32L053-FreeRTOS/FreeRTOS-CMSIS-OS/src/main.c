@@ -54,7 +54,7 @@ UART_HandleTypeDef Uart1Handle;
 __IO ITStatus Uart1Ready = RESET;
 
 /* Buffer used for transmission */
-uint8_t aTxBuffer[] = " ****UART_TwoBoards_ComIT****  ****UART_TwoBoards_ComIT****  ****UART_TwoBoards_ComIT**** ";
+uint8_t aTxBuffer[] = "Apple";
 
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
