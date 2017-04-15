@@ -51,6 +51,8 @@ osThreadId task2Handle;
 
 
 UART_HandleTypeDef Uart1Handle;
+HAL_StatusTypeDef  status;
+
 __IO ITStatus Uart1Ready = RESET;
 __IO ITStatus PushToRPi  = RESET;
 
@@ -94,9 +96,9 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(ModBus, ModBusTask, osPriorityNormal, 0, 128);
-  osThreadDef(task1, StartTASK1, osPriorityNormal, 0, 128);
-  osThreadDef(task2, StartTASK2, osPriorityNormal, 0, 128);
+  osThreadDef(ModBus, ModBusTask, osPriorityRealtime, 0, 128);
+  osThreadDef(task1,  StartTASK1, osPriorityNormal,   0, 128);
+  osThreadDef(task2,  StartTASK2, osPriorityNormal,   0, 128);
 
   modbusTaskTaskHandle = osThreadCreate(osThread(ModBus)     , NULL);
   task1Handle          = osThreadCreate(osThread(task1)      , NULL);
@@ -247,39 +249,31 @@ void ModBusTask(void const * argument)
   Uart1Handle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
   Uart1Handle.Init.Mode       = UART_MODE_TX_RX;
 
-  if(HAL_UART_Init(&Uart1Handle) != HAL_OK)
+  //
+  while(HAL_UART_Init(&Uart1Handle) != HAL_OK)
   {
-    Error_Handler();
+    //Error_Handler();
+    HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+    osDelay(5000);
   }
 
-  /* Put UART peripheral in reception process ###########################*/
-  if(HAL_UART_Receive_IT(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+  //
+  while(HAL_UART_Receive_IT(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
   {
-    Error_Handler();
+    //Error_Handler();
+    HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+    osDelay(1000);
   }
 
   for(;;)
   {
 
-	  /* Wait for complete message */
-     for(i = 0; i < TXBUFFERSIZE; i++)
-     {
-        if(aRxBuffer[i] == '\n')
-	    {
-	       Uart1Ready = SET;
-		   RpiMSG.len = i + 1;
-		}
-	 }
-
-	 /* Convert Str to Int */
+	 //
      if(Uart1Ready == SET)
 	 {
-    	/* Reset transmission flag */
-    	Uart1Ready = RESET;
-
     	u = 0;
         RpiMSG.msg[u] = ':';
-		for(i = 1; i < RpiMSG.len - 3; i+=2)
+		for(i = 1; i < RXBUFFERSIZE - 3; i+=2)
 		{
 	       tempChar[0] = aRxBuffer[i];
 	       tempChar[1] = aRxBuffer[i+1];
@@ -292,11 +286,22 @@ void ModBusTask(void const * argument)
 		RpiMSG.msg[u+1] = '\r';
 		RpiMSG.msg[u+2] = '\n';
 
-		HAL_UART_AbortReceive_IT(&Uart1Handle);
-		if(HAL_UART_Receive_IT(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+    	//
+    	Uart1Ready = RESET;
+
+    	while(HAL_UART_Transmit_IT(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
 		{
-		   Error_Handler();
+		   HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		   osDelay(500);
 		}
+
+    	//
+		while(HAL_UART_Receive_IT(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+		{
+		   HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		   osDelay(1000);
+		}
+
 	  }
 
      if(PushToRPi == SET)
@@ -311,6 +316,7 @@ void ModBusTask(void const * argument)
 		}
 
      }
+
 	 HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
      osDelay(50);
   }
@@ -345,6 +351,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *Uart1Handle)
 {
   /* Set transmission flag: trasfer complete*/
   //Uart1Ready = SET;
+  //osDelay(1);
 }
 
 /**
@@ -357,7 +364,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *Uart1Handle)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *Uart1Handle)
 {
   /* Set transmission flag: trasfer complete*/
-  //Uart1Ready = SET;
+  Uart1Ready = SET;
 }
 /**
   * @brief  UART error callbacks
@@ -368,9 +375,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *Uart1Handle)
   */
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
 {
-  while(1)
-  {
-  }
+  //while(1)
+  //{
+  //}
 }
 
 /**

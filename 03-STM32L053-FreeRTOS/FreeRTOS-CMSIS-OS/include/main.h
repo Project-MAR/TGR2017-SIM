@@ -65,7 +65,7 @@
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
 
-#define bufferLen 40
+#define bufferLen 32
 
 /* Definition for USARTx clock resources */
 #define USARTx                           USART1

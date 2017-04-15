@@ -1,4 +1,42 @@
-00:21:00 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+11:08:37 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42856	   2544	   4184	  49584	   c1b0	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:08:52 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42856	   2544	   4184	  49584	   c1b0	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:11:09 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42856	   2544	   4184	  49584	   c1b0	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:14:20 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
 make all 
 Building file: ../system/src/stm32l0xx/stm32l0xx_hal.c
 Invoking: Cross ARM GNU C Compiler
@@ -292,18 +330,10 @@ Finished building: FreeRTOS-CMSIS-OS.hex
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
    text	   data	    bss	    dec	    hex	filename
-  57320	   2544	   4140	  64004	   fa04	FreeRTOS-CMSIS-OS.elf
+  42832	   2544	   4120	  49496	   c158	FreeRTOS-CMSIS-OS.elf
 Finished building: FreeRTOS-CMSIS-OS.siz
  
-00:21:17 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  57320	   2544	   4140	  64004	   fa04	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:30:32 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+11:16:47 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
 make all 
 Building file: ../src/main.c
 Invoking: Cross ARM GNU C Compiler
@@ -322,180 +352,10 @@ Finished building: FreeRTOS-CMSIS-OS.hex
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
    text	   data	    bss	    dec	    hex	filename
-  57304	   2544	   4140	  63988	   f9f4	FreeRTOS-CMSIS-OS.elf
+  42768	   2544	   4120	  49432	   c118	FreeRTOS-CMSIS-OS.elf
 Finished building: FreeRTOS-CMSIS-OS.siz
  
-00:36:40 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Building file: ../src/main.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-Finished building: ../src/main.c
- 
-Building target: FreeRTOS-CMSIS-OS.elf
-Invoking: Cross ARM GNU C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
-Finished building target: FreeRTOS-CMSIS-OS.elf
- 
-Invoking: Cross ARM GNU Create Flash Image
-arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
-Finished building: FreeRTOS-CMSIS-OS.hex
- 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42728	   2544	   4140	  49412	   c104	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:36:49 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42728	   2544	   4140	  49412	   c104	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:38:22 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42728	   2544	   4140	  49412	   c104	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:39:47 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Building file: ../src/main.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-Finished building: ../src/main.c
- 
-Building target: FreeRTOS-CMSIS-OS.elf
-Invoking: Cross ARM GNU C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
-Finished building target: FreeRTOS-CMSIS-OS.elf
- 
-Invoking: Cross ARM GNU Create Flash Image
-arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
-Finished building: FreeRTOS-CMSIS-OS.hex
- 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42744	   2544	   4140	  49428	   c114	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:45:34 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Building file: ../src/main.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-Finished building: ../src/main.c
- 
-Building target: FreeRTOS-CMSIS-OS.elf
-Invoking: Cross ARM GNU C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
-Finished building target: FreeRTOS-CMSIS-OS.elf
- 
-Invoking: Cross ARM GNU Create Flash Image
-arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
-Finished building: FreeRTOS-CMSIS-OS.hex
- 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42744	   2544	   4140	  49428	   c114	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:51:22 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Building file: ../src/main.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-Finished building: ../src/main.c
- 
-Building target: FreeRTOS-CMSIS-OS.elf
-Invoking: Cross ARM GNU C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
-Finished building target: FreeRTOS-CMSIS-OS.elf
- 
-Invoking: Cross ARM GNU Create Flash Image
-arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
-Finished building: FreeRTOS-CMSIS-OS.hex
- 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42792	   2544	   4140	  49476	   c144	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:53:53 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Building file: ../src/main.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-Finished building: ../src/main.c
- 
-Building target: FreeRTOS-CMSIS-OS.elf
-Invoking: Cross ARM GNU C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
-Finished building target: FreeRTOS-CMSIS-OS.elf
- 
-Invoking: Cross ARM GNU Create Flash Image
-arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
-Finished building: FreeRTOS-CMSIS-OS.hex
- 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42824	   2544	   4140	  49508	   c164	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:54:11 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Building file: ../src/main.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-Finished building: ../src/main.c
- 
-Building target: FreeRTOS-CMSIS-OS.elf
-Invoking: Cross ARM GNU C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
-Finished building target: FreeRTOS-CMSIS-OS.elf
- 
-Invoking: Cross ARM GNU Create Flash Image
-arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
-Finished building: FreeRTOS-CMSIS-OS.hex
- 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42824	   2544	   4140	  49508	   c164	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-00:58:10 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
-make all 
-Building file: ../src/main.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
-Finished building: ../src/main.c
- 
-Building target: FreeRTOS-CMSIS-OS.elf
-Invoking: Cross ARM GNU C++ Linker
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
-Finished building target: FreeRTOS-CMSIS-OS.elf
- 
-Invoking: Cross ARM GNU Create Flash Image
-arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
-Finished building: FreeRTOS-CMSIS-OS.hex
- 
-Invoking: Cross ARM GNU Print Size
-arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
-   text	   data	    bss	    dec	    hex	filename
-  42824	   2544	   4140	  49508	   c164	FreeRTOS-CMSIS-OS.elf
-Finished building: FreeRTOS-CMSIS-OS.siz
- 
-01:33:03 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+11:30:57 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
 make all 
 Building file: ../system/src/stm32l0xx/stm32l0xx_hal.c
 Invoking: Cross ARM GNU C Compiler
@@ -536,16 +396,6 @@ Building file: ../system/src/stm32l0xx/stm32l0xx_hal_crc_ex.c
 Invoking: Cross ARM GNU C Compiler
 arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_hal_crc_ex.d" -MT"system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o" -c -o "system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o" "../system/src/stm32l0xx/stm32l0xx_hal_crc_ex.c"
 Finished building: ../system/src/stm32l0xx/stm32l0xx_hal_crc_ex.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_hal_cryp.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_hal_cryp.d" -MT"system/src/stm32l0xx/stm32l0xx_hal_cryp.o" -c -o "system/src/stm32l0xx/stm32l0xx_hal_cryp.o" "../system/src/stm32l0xx/stm32l0xx_hal_cryp.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_hal_cryp.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.d" -MT"system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o" -c -o "system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o" "../system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.c
  
 Building file: ../system/src/stm32l0xx/stm32l0xx_hal_dac.c
 Invoking: Cross ARM GNU C Compiler
@@ -722,166 +572,6 @@ Invoking: Cross ARM GNU C Compiler
 arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_hal_wwdg.d" -MT"system/src/stm32l0xx/stm32l0xx_hal_wwdg.o" -c -o "system/src/stm32l0xx/stm32l0xx_hal_wwdg.o" "../system/src/stm32l0xx/stm32l0xx_hal_wwdg.c"
 Finished building: ../system/src/stm32l0xx/stm32l0xx_hal_wwdg.c
  
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_adc.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_adc.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_adc.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_adc.o" "../system/src/stm32l0xx/stm32l0xx_ll_adc.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_adc.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_comp.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_comp.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_comp.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_comp.o" "../system/src/stm32l0xx/stm32l0xx_ll_comp.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_comp.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_crc.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_crc.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_crc.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_crc.o" "../system/src/stm32l0xx/stm32l0xx_ll_crc.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_crc.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_crs.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_crs.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_crs.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_crs.o" "../system/src/stm32l0xx/stm32l0xx_ll_crs.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_crs.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_dac.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_dac.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_dac.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_dac.o" "../system/src/stm32l0xx/stm32l0xx_ll_dac.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_dac.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_dma.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_dma.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_dma.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_dma.o" "../system/src/stm32l0xx/stm32l0xx_ll_dma.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_dma.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_exti.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_exti.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_exti.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_exti.o" "../system/src/stm32l0xx/stm32l0xx_ll_exti.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_exti.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_gpio.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_gpio.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_gpio.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_gpio.o" "../system/src/stm32l0xx/stm32l0xx_ll_gpio.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_gpio.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_i2c.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_i2c.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_i2c.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_i2c.o" "../system/src/stm32l0xx/stm32l0xx_ll_i2c.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_i2c.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_lptim.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_lptim.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_lptim.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_lptim.o" "../system/src/stm32l0xx/stm32l0xx_ll_lptim.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_lptim.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_lpuart.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_lpuart.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_lpuart.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_lpuart.o" "../system/src/stm32l0xx/stm32l0xx_ll_lpuart.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_lpuart.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_pwr.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_pwr.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_pwr.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_pwr.o" "../system/src/stm32l0xx/stm32l0xx_ll_pwr.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_pwr.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_rcc.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_rcc.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_rcc.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_rcc.o" "../system/src/stm32l0xx/stm32l0xx_ll_rcc.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_rcc.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_rng.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_rng.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_rng.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_rng.o" "../system/src/stm32l0xx/stm32l0xx_ll_rng.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_rng.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_rtc.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_rtc.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_rtc.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_rtc.o" "../system/src/stm32l0xx/stm32l0xx_ll_rtc.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_rtc.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_spi.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_spi.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_spi.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_spi.o" "../system/src/stm32l0xx/stm32l0xx_ll_spi.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_spi.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_tim.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_tim.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_tim.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_tim.o" "../system/src/stm32l0xx/stm32l0xx_ll_tim.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_tim.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_usart.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_usart.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_usart.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_usart.o" "../system/src/stm32l0xx/stm32l0xx_ll_usart.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_usart.c
- 
-Building file: ../system/src/stm32l0xx/stm32l0xx_ll_utils.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/stm32l0xx/stm32l0xx_ll_utils.d" -MT"system/src/stm32l0xx/stm32l0xx_ll_utils.o" -c -o "system/src/stm32l0xx/stm32l0xx_ll_utils.o" "../system/src/stm32l0xx/stm32l0xx_ll_utils.c"
-Finished building: ../system/src/stm32l0xx/stm32l0xx_ll_utils.c
- 
-Building file: ../system/src/newlib/_cxx.cpp
-Invoking: Cross ARM GNU C++ Compiler
-arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32l05xx" -std=gnu++11 -fabi-version=0 -MMD -MP -MF"system/src/newlib/_cxx.d" -MT"system/src/newlib/_cxx.o" -c -o "system/src/newlib/_cxx.o" "../system/src/newlib/_cxx.cpp"
-Finished building: ../system/src/newlib/_cxx.cpp
- 
-Building file: ../system/src/newlib/_exit.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/newlib/_exit.d" -MT"system/src/newlib/_exit.o" -c -o "system/src/newlib/_exit.o" "../system/src/newlib/_exit.c"
-Finished building: ../system/src/newlib/_exit.c
- 
-Building file: ../system/src/newlib/_sbrk.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/newlib/_sbrk.d" -MT"system/src/newlib/_sbrk.o" -c -o "system/src/newlib/_sbrk.o" "../system/src/newlib/_sbrk.c"
-Finished building: ../system/src/newlib/_sbrk.c
- 
-Building file: ../system/src/newlib/_startup.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/newlib/_startup.d" -MT"system/src/newlib/_startup.o" -c -o "system/src/newlib/_startup.o" "../system/src/newlib/_startup.c"
-Finished building: ../system/src/newlib/_startup.c
- 
-Building file: ../system/src/newlib/_syscalls.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/newlib/_syscalls.d" -MT"system/src/newlib/_syscalls.o" -c -o "system/src/newlib/_syscalls.o" "../system/src/newlib/_syscalls.c"
-Finished building: ../system/src/newlib/_syscalls.c
- 
-Building file: ../system/src/newlib/assert.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/newlib/assert.d" -MT"system/src/newlib/assert.o" -c -o "system/src/newlib/assert.o" "../system/src/newlib/assert.c"
-Finished building: ../system/src/newlib/assert.c
- 
-Building file: ../system/src/diag/Trace.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/diag/Trace.d" -MT"system/src/diag/Trace.o" -c -o "system/src/diag/Trace.o" "../system/src/diag/Trace.c"
-Finished building: ../system/src/diag/Trace.c
- 
-Building file: ../system/src/diag/trace_impl.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/diag/trace_impl.d" -MT"system/src/diag/trace_impl.o" -c -o "system/src/diag/trace_impl.o" "../system/src/diag/trace_impl.c"
-Finished building: ../system/src/diag/trace_impl.c
- 
-Building file: ../system/src/cortexm/_initialize_hardware.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/cortexm/_initialize_hardware.d" -MT"system/src/cortexm/_initialize_hardware.o" -c -o "system/src/cortexm/_initialize_hardware.o" "../system/src/cortexm/_initialize_hardware.c"
-Finished building: ../system/src/cortexm/_initialize_hardware.c
- 
-Building file: ../system/src/cortexm/_reset_hardware.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/cortexm/_reset_hardware.d" -MT"system/src/cortexm/_reset_hardware.o" -c -o "system/src/cortexm/_reset_hardware.o" "../system/src/cortexm/_reset_hardware.c"
-Finished building: ../system/src/cortexm/_reset_hardware.c
- 
-Building file: ../system/src/cortexm/exception_handlers.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/cortexm/exception_handlers.d" -MT"system/src/cortexm/exception_handlers.o" -c -o "system/src/cortexm/exception_handlers.o" "../system/src/cortexm/exception_handlers.c"
-Finished building: ../system/src/cortexm/exception_handlers.c
- 
-Building file: ../system/src/cmsis/startup_stm32l053xx.S
-Invoking: Cross ARM GNU Assembler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -x assembler-with-cpp -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32l0xx" -MMD -MP -MF"system/src/cmsis/startup_stm32l053xx.d" -MT"system/src/cmsis/startup_stm32l053xx.o" -c -o "system/src/cmsis/startup_stm32l053xx.o" "../system/src/cmsis/startup_stm32l053xx.S"
-Finished building: ../system/src/cmsis/startup_stm32l053xx.S
- 
-Building file: ../system/src/cmsis/system_stm32l0xx.c
-Invoking: Cross ARM GNU C Compiler
-arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/cmsis/system_stm32l0xx.d" -MT"system/src/cmsis/system_stm32l0xx.o" -c -o "system/src/cmsis/system_stm32l0xx.o" "../system/src/cmsis/system_stm32l0xx.c"
-Finished building: ../system/src/cmsis/system_stm32l0xx.c
- 
 Building file: ../system/src/FreeRTOS/cmsis_os.c
 Invoking: Cross ARM GNU C Compiler
 arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"system/src/FreeRTOS/cmsis_os.d" -MT"system/src/FreeRTOS/cmsis_os.o" -c -o "system/src/FreeRTOS/cmsis_os.o" "../system/src/FreeRTOS/cmsis_os.c"
@@ -959,10 +649,18 @@ Finished building: FreeRTOS-CMSIS-OS.hex
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
    text	   data	    bss	    dec	    hex	filename
-  42808	   2544	   4140	  49492	   c154	FreeRTOS-CMSIS-OS.elf
+  42768	   2544	   4148	  49460	   c134	FreeRTOS-CMSIS-OS.elf
 Finished building: FreeRTOS-CMSIS-OS.siz
  
-01:36:17 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+11:38:03 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42768	   2544	   4148	  49460	   c134	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:41:04 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
 make all 
 Building file: ../src/main.c
 Invoking: Cross ARM GNU C Compiler
@@ -981,10 +679,10 @@ Finished building: FreeRTOS-CMSIS-OS.hex
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
    text	   data	    bss	    dec	    hex	filename
-  42808	   2544	   4140	  49492	   c154	FreeRTOS-CMSIS-OS.elf
+  42760	   2544	   4116	  49420	   c10c	FreeRTOS-CMSIS-OS.elf
 Finished building: FreeRTOS-CMSIS-OS.siz
  
-01:50:59 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+11:42:14 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
 make all 
 Building file: ../src/main.c
 Invoking: Cross ARM GNU C Compiler
@@ -1003,6 +701,252 @@ Finished building: FreeRTOS-CMSIS-OS.hex
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
    text	   data	    bss	    dec	    hex	filename
-  43128	   2544	   4140	  49812	   c294	FreeRTOS-CMSIS-OS.elf
+  42768	   2544	   4116	  49428	   c114	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:47:02 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42776	   2544	   4116	  49436	   c11c	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:49:36 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42776	   2544	   4116	  49436	   c11c	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:51:06 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42776	   2544	   4116	  49436	   c11c	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:52:36 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42800	   2544	   4116	  49460	   c134	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+11:55:06 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42800	   2544	   4116	  49460	   c134	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+12:03:28 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42784	   2544	   4116	  49444	   c124	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+12:05:30 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42784	   2544	   4116	  49444	   c124	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+12:08:20 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42792	   2544	   4116	  49452	   c12c	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+12:20:26 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42848	   2544	   4120	  49512	   c168	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+12:31:06 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42888	   2544	   4120	  49552	   c190	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+12:36:52 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42888	   2544	   4120	  49552	   c190	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+13:01:20 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42888	   2544	   4120	  49552	   c190	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+13:04:08 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42888	   2544	   4120	  49552	   c190	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+13:06:52 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42888	   2544	   4120	  49552	   c190	FreeRTOS-CMSIS-OS.elf
+Finished building: FreeRTOS-CMSIS-OS.siz
+ 
+13:33:11 **** Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+make all 
+Building file: ../src/main.c
+Invoking: Cross ARM GNU C Compiler
+arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -DDEBUG -DTRACE -I"../include" -I"../system/include" -I"../system/include/arm" -I"../system/include/cmsis" -I"../system/include/cortexm" -I"../system/include/diag" -I"../system/include/stm32l0xx" -I"../system/include/FreeRTOS" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: FreeRTOS-CMSIS-OS.elf
+Invoking: Cross ARM GNU C++ Linker
+arm-none-eabi-g++ -mcpu=cortex-m0plus -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"FreeRTOS-CMSIS-OS.map" -o "FreeRTOS-CMSIS-OS.elf"  ./system/src/stm32l0xx/stm32l0xx_hal.o ./system/src/stm32l0xx/stm32l0xx_hal_adc.o ./system/src/stm32l0xx/stm32l0xx_hal_adc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_comp.o ./system/src/stm32l0xx/stm32l0xx_hal_comp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cortex.o ./system/src/stm32l0xx/stm32l0xx_hal_crc.o ./system/src/stm32l0xx/stm32l0xx_hal_crc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp.o ./system/src/stm32l0xx/stm32l0xx_hal_cryp_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dac.o ./system/src/stm32l0xx/stm32l0xx_hal_dac_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_dma.o ./system/src/stm32l0xx/stm32l0xx_hal_firewall.o ./system/src/stm32l0xx/stm32l0xx_hal_flash.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_flash_ramfunc.o ./system/src/stm32l0xx/stm32l0xx_hal_gpio.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c.o ./system/src/stm32l0xx/stm32l0xx_hal_i2c_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_i2s.o ./system/src/stm32l0xx/stm32l0xx_hal_irda.o ./system/src/stm32l0xx/stm32l0xx_hal_iwdg.o ./system/src/stm32l0xx/stm32l0xx_hal_lcd.o ./system/src/stm32l0xx/stm32l0xx_hal_lptim.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd.o ./system/src/stm32l0xx/stm32l0xx_hal_pcd_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr.o ./system/src/stm32l0xx/stm32l0xx_hal_pwr_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc.o ./system/src/stm32l0xx/stm32l0xx_hal_rcc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_rng.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc.o ./system/src/stm32l0xx/stm32l0xx_hal_rtc_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard.o ./system/src/stm32l0xx/stm32l0xx_hal_smartcard_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_smbus.o ./system/src/stm32l0xx/stm32l0xx_hal_spi.o ./system/src/stm32l0xx/stm32l0xx_hal_tim.o ./system/src/stm32l0xx/stm32l0xx_hal_tim_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_tsc.o ./system/src/stm32l0xx/stm32l0xx_hal_uart.o ./system/src/stm32l0xx/stm32l0xx_hal_uart_ex.o ./system/src/stm32l0xx/stm32l0xx_hal_usart.o ./system/src/stm32l0xx/stm32l0xx_hal_wwdg.o ./system/src/stm32l0xx/stm32l0xx_ll_adc.o ./system/src/stm32l0xx/stm32l0xx_ll_comp.o ./system/src/stm32l0xx/stm32l0xx_ll_crc.o ./system/src/stm32l0xx/stm32l0xx_ll_crs.o ./system/src/stm32l0xx/stm32l0xx_ll_dac.o ./system/src/stm32l0xx/stm32l0xx_ll_dma.o ./system/src/stm32l0xx/stm32l0xx_ll_exti.o ./system/src/stm32l0xx/stm32l0xx_ll_gpio.o ./system/src/stm32l0xx/stm32l0xx_ll_i2c.o ./system/src/stm32l0xx/stm32l0xx_ll_lptim.o ./system/src/stm32l0xx/stm32l0xx_ll_lpuart.o ./system/src/stm32l0xx/stm32l0xx_ll_pwr.o ./system/src/stm32l0xx/stm32l0xx_ll_rcc.o ./system/src/stm32l0xx/stm32l0xx_ll_rng.o ./system/src/stm32l0xx/stm32l0xx_ll_rtc.o ./system/src/stm32l0xx/stm32l0xx_ll_spi.o ./system/src/stm32l0xx/stm32l0xx_ll_tim.o ./system/src/stm32l0xx/stm32l0xx_ll_usart.o ./system/src/stm32l0xx/stm32l0xx_ll_utils.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/startup_stm32l053xx.o ./system/src/cmsis/system_stm32l0xx.o  ./system/src/FreeRTOS/cmsis_os.o ./system/src/FreeRTOS/croutine.o ./system/src/FreeRTOS/event_groups.o ./system/src/FreeRTOS/heap_2.o ./system/src/FreeRTOS/list.o ./system/src/FreeRTOS/port.o ./system/src/FreeRTOS/queue.o ./system/src/FreeRTOS/tasks.o ./system/src/FreeRTOS/timers.o  ./src/freertos.o ./src/main.o ./src/stm32l0xx_hal_msp.o ./src/stm32l0xx_it.o   
+Finished building target: FreeRTOS-CMSIS-OS.elf
+ 
+Invoking: Cross ARM GNU Create Flash Image
+arm-none-eabi-objcopy -O ihex "FreeRTOS-CMSIS-OS.elf"  "FreeRTOS-CMSIS-OS.hex"
+Finished building: FreeRTOS-CMSIS-OS.hex
+ 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
+   text	   data	    bss	    dec	    hex	filename
+  42896	   2544	   4120	  49560	   c198	FreeRTOS-CMSIS-OS.elf
 Finished building: FreeRTOS-CMSIS-OS.siz
  

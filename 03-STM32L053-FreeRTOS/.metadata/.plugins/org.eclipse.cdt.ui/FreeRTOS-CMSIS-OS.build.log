@@ -1,4 +1,4 @@
-01:50:59 **** Incremental Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
+13:33:11 **** Build of configuration Debug for project FreeRTOS-CMSIS-OS ****
 make all 
 Building file: ../src/main.c
 Invoking: Cross ARM GNU C Compiler
@@ -17,9 +17,9 @@ Finished building: FreeRTOS-CMSIS-OS.hex
 Invoking: Cross ARM GNU Print Size
 arm-none-eabi-size --format=berkeley "FreeRTOS-CMSIS-OS.elf"
    text	   data	    bss	    dec	    hex	filename
-  43128	   2544	   4140	  49812	   c294	FreeRTOS-CMSIS-OS.elf
+  42896	   2544	   4120	  49560	   c198	FreeRTOS-CMSIS-OS.elf
 Finished building: FreeRTOS-CMSIS-OS.siz
  
 
-01:50:59 Build Finished (took 735ms)
+13:33:12 Build Finished (took 1s.6ms)
 

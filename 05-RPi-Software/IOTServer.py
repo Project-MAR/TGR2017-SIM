@@ -194,11 +194,20 @@ imageCapture(imageName, imagePATH)
 #print(result)
 #time.sleep(3)
 
-msg = '0918AFBE00037Eaabc5e69'
-msg = ':' + msg +'\r\n'
+#       : id cmd len     payload[10]      CLC \r \n 
+#msg = ': 01 01  05  0203040506FFFFFFFFFF 65  13 15'
 
-#ser.write(':1103006B00037E\r\n')
+#ser.write(':0101050203040506FFFFFFFFFF65\r\n')
+
+# MUST Fix length = 31
+msg = ':0101050102030405111213141565\r\n'
+
+#msg  = ':0101100102030405060708090A65\r\n'
+print("TX:", msg)
 ser.write(msg)
+msg = ser.readline()
+print("RX:", msg)
+
 print('finish')
 
 
