@@ -44,9 +44,10 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 /* Includes ------------------------------------------------------------------*/
-
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
@@ -63,6 +64,8 @@
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+
+#define bufferLen 40
 
 /* Definition for USARTx clock resources */
 #define USARTx                           USART1
@@ -87,12 +90,23 @@
 
 /* Size of Trasmission buffer */
 #define TXBUFFERSIZE                      (COUNTOF(aTxBuffer) - 1)
+//#define TXBUFFERSIZE 1
 /* Size of Reception buffer */
 #define RXBUFFERSIZE                      TXBUFFERSIZE
-
+//#define RXBUFFERSIZE 1
 /* USER CODE BEGIN Private defines */
 #define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
 /* USER CODE END Private defines */
+
+
+typedef struct RPiMessage_TAG
+{
+	unsigned char msg[bufferLen];
+	unsigned char len;
+}RPiMessage;
+
+
+
 
 /**
   * @}

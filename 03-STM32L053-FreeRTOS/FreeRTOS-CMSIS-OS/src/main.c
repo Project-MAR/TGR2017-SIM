@@ -52,12 +52,15 @@ osThreadId task2Handle;
 
 UART_HandleTypeDef Uart1Handle;
 __IO ITStatus Uart1Ready = RESET;
+__IO ITStatus PushToRPi  = RESET;
 
 /* Buffer used for transmission */
-uint8_t aTxBuffer[] = "Apple";
+uint8_t aTxBuffer[bufferLen];
 
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
+
+RPiMessage RpiMSG;
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -226,7 +229,9 @@ static void MX_GPIO_Init(void)
 
 void ModBusTask(void const * argument)
 {
-  /*##-1- Configure the UART peripheral ######################################*/
+  uint8_t i, u, sum;
+  uint8_t tempChar[2];
+
   /* Put the USART peripheral in the Asynchronous mode (UART Mode) */
   /* UART1 configured as follow:
   - Word Length = 8 Bits
@@ -235,7 +240,7 @@ void ModBusTask(void const * argument)
   - BaudRate = 9600 baud
   - Hardware flow control disabled (RTS and CTS signals) */
   Uart1Handle.Instance        = USARTx;
-  Uart1Handle.Init.BaudRate   = 9600;
+  Uart1Handle.Init.BaudRate   = 115200;
   Uart1Handle.Init.WordLength = UART_WORDLENGTH_8B;
   Uart1Handle.Init.StopBits   = UART_STOPBITS_1;
   Uart1Handle.Init.Parity     = UART_PARITY_NONE;
@@ -247,34 +252,67 @@ void ModBusTask(void const * argument)
     Error_Handler();
   }
 
-  /* The board receives the message and sends it back */
-
-  /*##-2- Put UART peripheral in reception process ###########################*/
+  /* Put UART peripheral in reception process ###########################*/
   if(HAL_UART_Receive_IT(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /*##-3- Wait for the end of the transfer ###################################*/
-  while (Uart1Ready != SET)
-  {
-  }
-
-  /* Reset transmission flag */
-  Uart1Ready = RESET;
-
-  /*##-4- Start the transmission process #####################################*/
-  /* While the UART in reception process, user can transmit data through
-     "aTxBuffer" buffer */
-  if(HAL_UART_Transmit_IT(&Uart1Handle, (uint8_t*)aTxBuffer, TXBUFFERSIZE)!= HAL_OK)
   {
     Error_Handler();
   }
 
   for(;;)
   {
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-    osDelay(1000);
+
+	  /* Wait for complete message */
+     for(i = 0; i < TXBUFFERSIZE; i++)
+     {
+        if(aRxBuffer[i] == '\n')
+	    {
+	       Uart1Ready = SET;
+		   RpiMSG.len = i + 1;
+		}
+	 }
+
+	 /* Convert Str to Int */
+     if(Uart1Ready == SET)
+	 {
+    	/* Reset transmission flag */
+    	Uart1Ready = RESET;
+
+    	u = 0;
+        RpiMSG.msg[u] = ':';
+		for(i = 1; i < RpiMSG.len - 3; i+=2)
+		{
+	       tempChar[0] = aRxBuffer[i];
+	       tempChar[1] = aRxBuffer[i+1];
+	       u++;
+	       sum = (int)strtol(tempChar, NULL, 16);
+	       RpiMSG.msg[u] = sum;
+		}
+
+		RpiMSG.len = u + 3;
+		RpiMSG.msg[u+1] = '\r';
+		RpiMSG.msg[u+2] = '\n';
+
+		HAL_UART_AbortReceive_IT(&Uart1Handle);
+		if(HAL_UART_Receive_IT(&Uart1Handle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+		{
+		   Error_Handler();
+		}
+	  }
+
+     if(PushToRPi == SET)
+     {
+    	 PushToRPi = RESET;
+	    /* Start the transmission process #####################################*/
+		/* While the UART in reception process, user can transmit data through
+		"aTxBuffer" buffer */
+		if(HAL_UART_Transmit_IT(&Uart1Handle, (uint8_t*)aTxBuffer, TXBUFFERSIZE)!= HAL_OK)
+		{
+		   Error_Handler();
+		}
+
+     }
+	 HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+     osDelay(50);
   }
 }
 
@@ -282,7 +320,7 @@ void StartTASK1(void const * argument)
 {
   for(;;)
   {
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
     osDelay(333);
   }
 }
@@ -291,7 +329,7 @@ void StartTASK2(void const * argument)
 {
   for(;;)
   {
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
     osDelay(789);
   }
 }
@@ -306,7 +344,7 @@ void StartTASK2(void const * argument)
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *Uart1Handle)
 {
   /* Set transmission flag: trasfer complete*/
-  Uart1Ready = SET;
+  //Uart1Ready = SET;
 }
 
 /**
@@ -319,7 +357,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *Uart1Handle)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *Uart1Handle)
 {
   /* Set transmission flag: trasfer complete*/
-  Uart1Ready = SET;
+  //Uart1Ready = SET;
 }
 /**
   * @brief  UART error callbacks

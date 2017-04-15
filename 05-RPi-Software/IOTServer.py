@@ -3,12 +3,19 @@ import os
 import json, requests, base64
 from datetime import datetime
 
-import serial
+import serial, threading, picamera
+import time
+import struct
 
 # curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"key":"value"}'
 
+ProjectPATH = os.path.dirname(__file__)
+
 #Server = 'https://projectmar-bot.herokuapp.com/'
 Server = 'http://localhost:5000/'
+
+camera = picamera.PiCamera()
+imagePATH = ProjectPATH + '/img'
 
 page_PItoLINE    	  = 'PItoLINE'
 page_pushIMG          = 'pushIMG'
@@ -20,7 +27,7 @@ page_showCMDListDB    = 'showCMDListDB'
 page_dropAllDB        = 'dropAllDB'
 
 
-ProjectPATH = os.path.dirname(__file__)
+
 secretInfo = open(ProjectPATH + '/.env', "r")
 data = secretInfo.readlines()
 #print(data)
@@ -81,12 +88,12 @@ def pushDataLoggerDB(url, authMSG, SensorName, SensorValue, StampTIME):
 	return  resp.json()
 
 
-def pushImgDB(url, authMSG, data, data_tn, StampTIME):
+def pushImgDB(url, authMSG, raw_img, raw_img_tn, StampTIME):
 	
 	headerMSG = {'content-type': 'application/json'}
 
-	image    = data.encode('base64')
-	image_tn = data_tn.encode('base64')
+	image    = raw_img.encode('base64')
+	image_tn = raw_img_tn.encode('base64')
 
 	message = {
 		'image'     : image,
@@ -108,18 +115,91 @@ def showDB(url, authMSG):
 ***************************************************************************************************
 '''
 
-StampTIME = datetime.now()
-StampTIME.replace(microsecond=0)
+'''
+---------------------------------------------------------------------------------------------------
+******************************************** RPi **************************************************
+'''
+def imageCapture(filename, path):
+	#camera.resolution = (1024, 1024)
+	camera.capture(path +'/'+ filename)
 
+def imageCaptureLoop():
+	
+	# Max image size: 1024 x 1024
+	# Max preview image size: 240 x 240
+
+	StampTIME = str(datetime.now())
+	StampTIME = StampTIME[:16]
+	StampTIME = StampTIME.replace(' ',':')
+
+	camera.resolution = (1024, 1024)
+	imageName = StampTIME + '.jpg'
+	imageCapture(imageName, imagePATH)
+
+	img_file = open(imagePATH + '/' + imageName, "r")
+	image = img_file.read()
+	img_file.close()
+
+	camera.resolution = (240, 240)
+	imageName = StampTIME + '_tn.jpg'
+	imageCapture(imageName, imagePATH)
+
+	url = Server + page_pushImgDB
+
+	img_file = open(imagePATH + '/' + imageName, "r")
+	image_tn = img_file.read()
+	img_file.close()
+
+	result = pushImgDB(url, authMSG, image, image_tn, str(StampTIME))
+	#print(result)
+
+    
+'''
+def messageFromSTM32(data):
+	print(data)
+
+def thread_serial_read(ser):
+	while True:
+		reading = ser.readline()
+		messageFromSTM32(reading)
+'''
+
+		
+'''
+---------------------------------------------------------------------------------------------------
+***************************************************************************************************
+'''
+
+'''
+PIN OUT: GND TX RX
+'''
 ser = serial.Serial(port='/dev/ttyAMA0',
-					baudrate = 9600,
+					baudrate = 115200,
 					parity=serial.PARITY_NONE,
 					stopbits=serial.STOPBITS_ONE,
-               		bytesize=serial.EIGHTBITS,
-               		timeout=1
+               		bytesize=serial.EIGHTBITS              		
 					)
 
-ser.write('ProjectMAR\r\n')
+#xonxoff=True
+#thread =threading.Thread(target=thread_serial_read, args=(ser, ))
+'''
+StampTIME = str(datetime.now())
+StampTIME = StampTIME[:16]
+StampTIME = StampTIME.replace(' ',':')
+imageName = StampTIME + '.jpg'
+imageCapture(imageName, imagePATH)
+'''
+
+#result = ser.readline()
+#print(result)
+#time.sleep(3)
+
+msg = '0918AFBE00037Eaabc5e69'
+msg = ':' + msg +'\r\n'
+
+#ser.write(':1103006B00037E\r\n')
+ser.write(msg)
+print('finish')
 
 
 '''
@@ -161,4 +241,11 @@ print(result)
 url = Server + page_dropAllDB
 result = showDB(url, authMSG)
 print(result)
+
+
+
+while True:
+    ser.write("\r\nSay something:")
+    rcv = ser.read(1)
+    ser.write("\r\nYou sent:" + repr(rcv))
 '''
