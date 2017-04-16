@@ -73,6 +73,8 @@ RPiMessage RpiMSG;
 
 uint32_t SensorValueArray[10];
 
+uint16_t SensorConfigArray[10][10];
+
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void Error_Handler(void);
@@ -128,7 +130,7 @@ int main(void)
 
   while (1)
   {
-	  // Process Incoming message
+	  // Process Incoming message -----------------------------------------------------
 	  if (UartRXReady == SET)
 	  {
 		  UartRXReady = RESET;
@@ -162,7 +164,7 @@ int main(void)
 		  }
 	  }
 
-	  // Send Message to RPi
+	  // Send Message to RPi ----------------------------------------------------------
 	  if(UartTXReady == SET)
 	  {
 		  UartTXReady = RESET;
@@ -179,16 +181,15 @@ int main(void)
 		  UartTXReady = RESET;
 	  }
 
-
-
-
-
+	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
   }
 }
 
+
 void ProcessCMD(RPiMessage *RpiMSG)
 {
-	/*   index       0    1    2      3                  4-13                14   15  16
+	/*   ------------------------------- Command Pattern ------------------------------------
+	 *   index       0    1    2      3                  4-13                14   15  16
 	 *  Request:     :    01   01     00      01 02 03 04 05 06 07 08 09 10  5E   0D  0A
      *  Meaning:   START  id  CMD   Legnth    |----------payload----------|  LRC  \r  \n
      *  Note:                      [MAX==10]
@@ -204,7 +205,7 @@ void ProcessCMD(RPiMessage *RpiMSG)
      *       Meaning: GET Value From Sensor Number 4
      *
      *       Response    : 01 01 0A 04 00 00 00 00 00 00 02 4D 5C xx 0D 0A
-     *       Meaning: Value From Sensor Number 4 is
+     *       Meaning: Value From Sensor Number 4 is 0x024D5C
      *       Note: Sensor Value = 1508.76 =>> 150876 == 0x024D5C
 	 * */
 
@@ -215,6 +216,9 @@ void ProcessCMD(RPiMessage *RpiMSG)
 
 	if(RpiMSG->msg[2] == CMD_GET)
 	{
+		/*
+		* TODO: - GET multiple Sensor Value in single command
+		* */
 		sensorNumber = RpiMSG->msg[4];
 		sensorValue = SensorValueArray[sensorNumber];
 
@@ -262,9 +266,48 @@ void ProcessCMD(RPiMessage *RpiMSG)
 	}
 	else if (RpiMSG->msg[2] == CMD_SET)
 	{
+		/*   ------------------------------- Command Pattern ------------------------------------
+		 *   index       0    1    2      3                  4-13                14   15  16
+		 *  Request:     :    01   02     00      01 02 03 04 05 06 07 08 09 10  5E   0D  0A
+	     *  Meaning:   START  id  CMD   Legnth    |----------payload----------|  LRC  \r  \n
+	     *  Note:                      [MAX==10]
+	     *
+	     *   index
+	     *   Response:    :    01   02     00       01 02 03 04 05 06 07 08 09 10    5E   0D  0A
+	     *   Meaning:   START  id  CMD   Legnth     |----------payload----------|    LRC  \r  \n
+	     *    Note:                     [MAX==10]  Sensor Number follow by its value
+	     *
+	     *  Example
+	     *   - Read Sensor1
+	     *       Request:    : 01 02 0A 01 02 00 00 00 00 00 00 00 03 xx 0D 0A
+	     *       Meaning: SET Sensor 1, Parameter 2, to 3
+	     *
+	     *       Response    : 01 02 0A 01 02 00 00 00 00 00 00 00 03 xx 0D 0A
+	     *       Meaning: Repeat SET Command
+		 * */
 
+		uint8_t i;
+		uint8_t SensorNumber;
+		uint8_t SensorParamNum;
+		uint16_t SensorConfigValue;
+
+		SensorNumber      = RpiMSG->msg[4];
+		SensorParamNum    = RpiMSG->msg[5];
+		SensorConfigValue = 0;
+
+		// byte 6-13 contain SensorConfigValue
+		SensorConfigValue = RpiMSG->msg[6];
+		for(i = 7; i<= 13; i++)
+		{
+			SensorConfigValue <<= 8;
+			SensorConfigValue |= RpiMSG->msg[i];
+		}
+
+		SensorConfigArray[SensorNumber][SensorParamNum] = SensorConfigValue;
+
+		strcpy(aTxBuffer, aRxBuffer);
+		UartTXReady = SET;
 	}
-
 }
 
 uint8_t LRCCheck(RPiMessage *RpiMSG)
@@ -275,6 +318,7 @@ uint8_t LRCCheck(RPiMessage *RpiMSG)
 	 * */
 	return TRUE;
 }
+
 
 /**
   * @brief  System Clock Configuration
@@ -327,6 +371,7 @@ static void SystemClock_Config(void)
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1);
 }
 
+
 static void MX_GPIO_Init(void)
 {
 
@@ -355,6 +400,7 @@ static void MX_GPIO_Init(void)
 
 }
 
+
 /**
   * @brief  Tx Transfer completed callback
   * @param  UartHandle: UART handle.
@@ -367,6 +413,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
   /* Set transmission flag: trasfer complete*/
   UartTXReady = SET;
 }
+
 
 /**
   * @brief  Rx Transfer completed callback
@@ -381,19 +428,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
   UartRXReady = SET;
 }
 
-/**
-  * @brief  UART error callbacks
-  * @param  UartHandle: UART handle
-  * @note   This example shows a simple way to report transfer error, and you can
-  *         add your own implementation.
-  * @retval None
-  */
- void HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
-{
-    while(1)
-    {
-    }
-}
 
 /**
   * @brief  Compares two buffers.
@@ -417,6 +451,22 @@ static uint16_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferL
   return 0;
 }
 
+
+/**
+  * @brief  UART error callbacks
+  * @param  UartHandle: UART handle
+  * @note   This example shows a simple way to report transfer error, and you can
+  *         add your own implementation.
+  * @retval None
+  */
+ void HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
+{
+    while(1)
+    {
+    }
+}
+
+
 /**
   * @brief  This function is executed in case of error occurrence.
   * @param  None
@@ -428,6 +478,7 @@ static void Error_Handler(void)
     {
     }
 }
+
 
 #ifdef  USE_FULL_ASSERT
 
@@ -450,31 +501,13 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif
 
-/**
-  * @}
-  */
 
 /**
   * @}
   */
 
-
-/*
- 	  strcpy(aTxBuffer, aRxBuffer);
-
-	  if(HAL_UART_Transmit_IT(&UartHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE)!= HAL_OK)
-	  {
-	    Error_Handler();
-	  }
-
-	  while (UartReady != SET)
-	  {
-	  }
-
-	  UartReady = RESET;
-
-	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
- */
-
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
