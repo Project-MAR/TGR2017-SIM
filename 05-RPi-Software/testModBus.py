@@ -33,11 +33,30 @@ def genMsg():
 	return msg
 
 
+head   = ':0101010'
+tail   = '00000000000000000055\r\n'
+for i in range(0, 10):
+	logFile = open('modBus3.log', 'a')
+	print('test Number: ',i)
+	msg = head + str(i) + tail
+	print("TX:", msg)
+	
+	ser.write(msg)
+	logFile.write(msg)
+	
+	msg = ser.readline()
+	print("RX:", msg)
+	logFile.write(msg)
+	logFile.close()
+	time.sleep(0.1)
+	
+print('finish')
 
 
-for i in range(0, 10000):
+'''
+for i in range(0, 1000000):
 
-	logFile = open('modBus.log', 'a')
+	logFile = open('modBus2.log', 'a')
 	print('test Number: ',i)
 	msg = genMsg()
 	print("TX:", msg)
@@ -49,6 +68,7 @@ for i in range(0, 10000):
 	logFile.write(msg)
 	logFile.close();
 	
-	time.sleep(5)
+	#time.sleep(0.1)
 
 print('finish')
+'''

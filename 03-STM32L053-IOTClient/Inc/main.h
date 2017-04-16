@@ -85,6 +85,30 @@
 //#define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
 /* Exported functions ------------------------------------------------------- */
 
+#define TRUE  1
+#define FALSE 0
+
+#define BoardID  0x01
+#define CMD_GET  0x01
+#define CMD_SET  0x02
+
+// Sensor and Actuator IDs, Must be Identical
+#define SENSOR1   0x01
+#define SENSOR2   0x02
+#define SENSOR3   0x03
+#define ACTUATOR1 0x04
+#define ACTUATOR2 0x05
+#define ACTUATOR3 0x06
+#define ACTUATOR4 0x07
+
+
+
+
+typedef struct RPiMessage_TAG
+{
+	unsigned char msg[bufferSize];
+	unsigned char len;
+}RPiMessage;
 
 #endif /* __MAIN_H */
 

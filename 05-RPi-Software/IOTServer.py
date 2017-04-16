@@ -200,16 +200,15 @@ imageCapture(imageName, imagePATH)
 #ser.write(':0101050203040506FFFFFFFFFF65\r\n')
 
 # MUST Fix length = 31
-msg = ':0101050102030405111213141565\r\n'
 
 #msg  = ':0101100102030405060708090A65\r\n'
+
+msg   = ':0101010900000000000000000055\r\n'
 print("TX:", msg)
 ser.write(msg)
 msg = ser.readline()
 print("RX:", msg)
-
 print('finish')
-
 
 '''
 #---------------------------------------------------------------------------------------------------

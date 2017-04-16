@@ -40,7 +40,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "string.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /** @addtogroup STM32L0xx_HAL_Examples
   * @{
@@ -57,7 +59,8 @@
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declaration */
 UART_HandleTypeDef UartHandle;
-__IO ITStatus UartReady = RESET;
+__IO ITStatus UartRXReady = RESET;
+__IO ITStatus UartTXReady = RESET;
 
 /* Buffer used for transmission */
 uint8_t aTxBuffer[TXBUFFERSIZE];
@@ -66,11 +69,18 @@ uint8_t aTxBuffer[TXBUFFERSIZE];
 //uint8_t aRxBuffer[RXBUFFERSIZE];
 uint8_t aRxBuffer[RXBUFFERSIZE];
 
+RPiMessage RpiMSG;
+
+uint32_t SensorValueArray[10];
+
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static uint16_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferLength);
+
+uint8_t LRCCheck(RPiMessage *RpiMSG);
+void ProcessCMD(RPiMessage *RpiMSG);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -81,6 +91,9 @@ static uint16_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferL
   */
 int main(void)
 {
+
+  uint8_t i, u, sum;
+  uint8_t tempChar[2];
 
   HAL_Init();
   MX_GPIO_Init();
@@ -101,35 +114,166 @@ int main(void)
     Error_Handler();
   }
 
-  /* Infinite loop */
+  if(HAL_UART_Receive_IT(&UartHandle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+  {
+	Error_Handler();
+  }
+
+  // Dummy Value for test
+  SensorValueArray[0] = 0  ; SensorValueArray[5] = 150876;
+  SensorValueArray[1] = 1  ; SensorValueArray[6] = 45678;
+  SensorValueArray[2] = 7  ; SensorValueArray[7] = 1955922247;
+  SensorValueArray[3] = 14 ; SensorValueArray[8] = 0xFFFFFFFF;
+  SensorValueArray[4] = 100; SensorValueArray[9] = 634222654;
+
   while (1)
   {
-	  if(HAL_UART_Receive_IT(&UartHandle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+	  // Process Incoming message
+	  if (UartRXReady == SET)
 	  {
-	    Error_Handler();
+		  UartRXReady = RESET;
+
+		  // Begin Process Command from RPi
+		  // 1. Convert STR-CMD to INT-CMD
+		  u = 0;
+		  RpiMSG.msg[u] = ':';
+		  for(i = 1; i < RXBUFFERSIZE - 3; i+=2)
+		  {
+			  tempChar[0] = aRxBuffer[i];
+			  tempChar[1] = aRxBuffer[i+1];
+			  u++;
+			  sum = (int)strtol(tempChar, NULL, 16);
+			  RpiMSG.msg[u] = sum;
+		  }
+
+		  RpiMSG.len = u + 3;
+		  RpiMSG.msg[u+1] = '\r';
+		  RpiMSG.msg[u+2] = '\n';
+
+		  // 2. Do a Basic Check
+		  if(RpiMSG.msg[0] == ':')
+			  if(LRCCheck(&RpiMSG) == TRUE)
+				  if(RpiMSG.msg[1] == BoardID)
+					  ProcessCMD(&RpiMSG);
+
+		  if(HAL_UART_Receive_IT(&UartHandle, (uint8_t *)aRxBuffer, RXBUFFERSIZE) != HAL_OK)
+		  {
+			  Error_Handler();
+		  }
 	  }
 
-	  while (UartReady != SET)
+	  // Send Message to RPi
+	  if(UartTXReady == SET)
 	  {
+		  UartTXReady = RESET;
+
+		  if(HAL_UART_Transmit_IT(&UartHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE)!= HAL_OK)
+		  {
+		    Error_Handler();
+		  }
+
+		  while (UartTXReady != SET)
+		  {
+		  }
+
+		  UartTXReady = RESET;
 	  }
 
-	  UartReady = RESET;
 
-	  strcpy(aTxBuffer, aRxBuffer);
 
-	  if(HAL_UART_Transmit_IT(&UartHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE)!= HAL_OK)
-	  {
-	    Error_Handler();
-	  }
 
-	  while (UartReady != SET)
-	  {
-	  }
 
-	  UartReady = RESET;
-
-	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
   }
+}
+
+void ProcessCMD(RPiMessage *RpiMSG)
+{
+	/*   index       0    1    2      3                  4-13                14   15  16
+	 *  Request:     :    01   01     00      01 02 03 04 05 06 07 08 09 10  5E   0D  0A
+     *  Meaning:   START  id  CMD   Legnth    |----------payload----------|  LRC  \r  \n
+     *  Note:                      [MAX==10]
+     *
+     *   index
+     *   Response:    :    01   01     00       01 02 03 04 05 06 07 08 09 10    5E   0D  0A
+     *   Meaning:   START  id  CMD   Legnth     |----------payload----------|    LRC  \r  \n
+     *    Note:                     [MAX==10]  Sensor Number follow by its value
+     *
+     *  Example
+     *   - Read Sensor1
+     *       Request:    : 01 01 01 04 00 00 00 00 00 00 00 00 00 xx 0D 0A
+     *       Meaning: GET Value From Sensor Number 4
+     *
+     *       Response    : 01 01 0A 04 00 00 00 00 00 00 02 4D 5C xx 0D 0A
+     *       Meaning: Value From Sensor Number 4 is
+     *       Note: Sensor Value = 1508.76 =>> 150876 == 0x024D5C
+	 * */
+
+	uint8_t i, sensorNumber;
+	uint32_t sensorValue;
+    uint8_t intToChar[16] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    uint8_t sensorValueSegment;
+
+	if(RpiMSG->msg[2] == CMD_GET)
+	{
+		sensorNumber = RpiMSG->msg[4];
+		sensorValue = SensorValueArray[sensorNumber];
+
+		// Sensor value is int32
+		// It use 4 byte to transmit
+		aTxBuffer[0] = ':';
+
+		aTxBuffer[1] = intToChar[(BoardID & 0xF0) << 4];
+		aTxBuffer[2] = intToChar[BoardID & 0x0F];
+
+		aTxBuffer[3] = intToChar[(CMD_GET & 0xF0) << 4];
+		aTxBuffer[4] = intToChar[CMD_GET & 0x0F];
+
+		/*
+		* TODO: - Calculate for a Real Length
+		* */
+		aTxBuffer[5] = '0';
+		aTxBuffer[6] = 'A';
+
+		// Client ID
+		aTxBuffer[7] = intToChar[(sensorNumber & 0xF0) << 4];
+		aTxBuffer[8] = intToChar[sensorNumber & 0x0F];
+
+		//byte 9-26 are payloads (total 18 bytes)
+		// 00 00 00 00 00 00 00 00 00
+		for (i = 26; i >= 9; i--)
+		{
+			sensorValueSegment    = sensorValue & 0xF;
+			sensorValue = sensorValue >> 4;
+			aTxBuffer[i] = intToChar[sensorValueSegment];
+		}
+		UartTXReady = SET;
+
+		/*
+		 * TODO: Calculate LRC
+		 * */
+		aTxBuffer[27] = '5';
+		aTxBuffer[28] = '5';
+
+		aTxBuffer[29] = '\r';
+		aTxBuffer[30] = '\n';
+
+		// SET TX Flag
+		UartTXReady = SET;
+	}
+	else if (RpiMSG->msg[2] == CMD_SET)
+	{
+
+	}
+
+}
+
+uint8_t LRCCheck(RPiMessage *RpiMSG)
+{
+
+	/*
+	 * TODO: Implement LRC Check
+	 * */
+	return TRUE;
 }
 
 /**
@@ -211,7 +355,6 @@ static void MX_GPIO_Init(void)
 
 }
 
-
 /**
   * @brief  Tx Transfer completed callback
   * @param  UartHandle: UART handle.
@@ -222,7 +365,7 @@ static void MX_GPIO_Init(void)
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
   /* Set transmission flag: trasfer complete*/
-  UartReady = SET;
+  UartTXReady = SET;
 }
 
 /**
@@ -235,7 +378,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
   /* Set transmission flag: trasfer complete*/
-  UartReady = SET;
+  UartRXReady = SET;
 }
 
 /**
@@ -314,5 +457,24 @@ void assert_failed(uint8_t* file, uint32_t line)
 /**
   * @}
   */
+
+
+/*
+ 	  strcpy(aTxBuffer, aRxBuffer);
+
+	  if(HAL_UART_Transmit_IT(&UartHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE)!= HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+
+	  while (UartReady != SET)
+	  {
+	  }
+
+	  UartReady = RESET;
+
+	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+ */
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
