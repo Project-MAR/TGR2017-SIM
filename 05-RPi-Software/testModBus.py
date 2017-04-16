@@ -32,7 +32,29 @@ def genMsg():
 	msg = ':' + msg +'\r\n'
 	return msg
 
+for i in range(0, 10000):
+	logFile = open('modBus4.log', 'a')
+	print('test Number: ',i)
+	msg = ':01010A0902030405060708090A65\r\n'
+	print("TX:", msg)
+	logFile.write(msg)
+	ser.write(msg)
+	msg = ser.readline()
+	print("RX:", msg)
+	logFile.write(msg)
+	#time.sleep(1)
 
+	msg = ser.readline()
+	print("RX:", msg)
+	logFile.write(msg)
+	logFile.write('----------------------------------------------')
+	print('----------------------------------------------')
+	logFile.close()
+	#time.sleep(1)
+
+print('finish')
+
+'''
 head   = ':0101010'
 tail   = '00000000000000000055\r\n'
 for i in range(0, 10):
@@ -51,7 +73,7 @@ for i in range(0, 10):
 	time.sleep(0.1)
 	
 print('finish')
-
+'''
 
 '''
 for i in range(0, 1000000):

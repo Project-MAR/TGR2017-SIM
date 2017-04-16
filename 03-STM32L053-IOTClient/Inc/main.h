@@ -81,6 +81,15 @@
 //#define RXBUFFERSIZE                      TXBUFFERSIZE
 #define TXBUFFERSIZE                        bufferSize
 #define RXBUFFERSIZE                        bufferSize
+
+
+#define TIMx                         TIM6
+#define TIMx_CLK_ENABLE              __HAL_RCC_TIM6_CLK_ENABLE
+
+/* Definition for TIMx's NVIC */
+#define TIMx_IRQn                    TIM6_DAC_IRQn
+#define TIMx_IRQHandler              TIM6_DAC_IRQHandler
+
 /* Exported macro ------------------------------------------------------------*/
 //#define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
 /* Exported functions ------------------------------------------------------- */

@@ -5,14 +5,14 @@ from datetime import datetime
 
 import serial, threading, picamera
 import time
-import struct
+import thread
 
 # curl -i http://0.0.0.0:5000/LINEtoPI -X POST -u User:Pass -H "Content-Type:application/json" -d '{"key":"value"}'
 
 ProjectPATH = os.path.dirname(__file__)
 
-#Server = 'https://projectmar-bot.herokuapp.com/'
-Server = 'http://localhost:5000/'
+Server = 'https://projectmar-bot.herokuapp.com/'
+#Server = 'http://localhost:5000/'
 
 camera = picamera.PiCamera()
 imagePATH = ProjectPATH + '/img'
@@ -25,6 +25,7 @@ page_showLogger       = 'showLoggerDB'
 page_showImgDB        = 'showImgDB'
 page_showCMDListDB    = 'showCMDListDB'
 page_dropAllDB        = 'dropAllDB'
+page_popCMD           = 'popCMD'
 
 
 
@@ -74,12 +75,13 @@ def PItoLINE(url, authMSG, payload, payloadType='text'):
 	return  resp.json()
 
 
-def pushDataLoggerDB(url, authMSG, SensorName, SensorValue, StampTIME):
+def pushDataLoggerDB(url, authMSG, BoardName, SensorName, SensorValue, StampTIME):
 
 	headerMSG = {'content-type': 'application/json'}
 
 	message = {
-		'Name'      : SensorName,
+		'BoardName' : BoardName,
+		'SensorName': SensorName,
 		'Value'     : SensorValue,
 		'StampTIME' : StampTIME 
 	}
@@ -110,6 +112,9 @@ def showDB(url, authMSG):
 	resp = requests.get(url, auth=authMSG)
 	return  resp.json()
 
+def popCMD(url, authMSG):
+	resp = requests.get(url, auth=authMSG)
+	return  resp.json()
 '''
 ---------------------------------------------------------------------------------------------------
 ***************************************************************************************************
@@ -153,7 +158,72 @@ def imageCaptureLoop():
 	result = pushImgDB(url, authMSG, image, image_tn, str(StampTIME))
 	#print(result)
 
-    
+def createMSGForSTM32(msgType, targetBoard, targetSensor, TargetConfigNumber, targetValue):
+	
+	if(msgType == 'GET'):
+		msg = ':'           # Start          1 char
+		msg += targetBoard  # ID             2 char
+		msg += '01'         # CMD            2 char
+		msg += '01'         # Legnth         2 char
+		msg += targetSensor # Sensor         2 char
+		msg += '000000000000000000' # pad,  18 char
+		msg += '55\r\n'     # LRC and CRLF   4 char
+		# Total for GET = 31 Chars
+
+	elif(msgType == 'SET'):
+		msg = ':'           		# Start          1 char
+		msg += targetBoard  		# ID             2 char
+		msg += '02'         		# CMD            2 char
+		msg += '0A'         		# Legnth         2 char
+		msg += targetSensor 		# Sensor         2 char
+		msg += TargetConfigNumber 	# Sensor         2 char
+
+		# Pad 0 until targetValue in payload is 20 chars long
+		for i in range(len(targetValue), 16):
+			msg += '0'
+		msg += targetValue
+		msg += '55\r\n'
+
+	return msg
+
+# Define a function for the thread
+def L2P_CMD_Pulling(delay):
+	taskDelay = delay
+	url = Server + page_popCMD
+	while True:
+		resp = requests.get(url, auth=authMSG)
+		resp = resp.json()
+		resp = json.dumps(resp)
+		resp = json.loads(resp)
+		#print(resp)
+		if(isinstance(resp, dict)):
+			if(resp.has_key('error')):
+				print('CMD_Pulling: STATUS = No Incoming CMD')
+				taskDelay = 1
+				pass
+		else:
+			resp = resp[0]
+			#      dbID    BoardID   SensorID  CMDTYPE  SensorCFG  Value
+			print(resp[0], resp[1],  resp[2],  resp[3],  resp[4],  resp[5])
+			taskDelay = 1
+
+			#Generate message for RPi
+			msgToSTM32 = createMSGForSTM32(resp[3], resp[1], resp[2], resp[4], str(resp[5]))
+			print('CMD_Pulling: STATUS: Send: ', msgToSTM32)
+
+			ser = serial.Serial(port='/dev/ttyAMA0',
+					baudrate = 115200,
+					parity=serial.PARITY_NONE,
+					stopbits=serial.STOPBITS_ONE,
+               		bytesize=serial.EIGHTBITS              		
+					)
+				
+		time.sleep(taskDelay)
+	
+
+	
+
+
 '''
 def messageFromSTM32(data):
 	print(data)
@@ -177,15 +247,32 @@ ser = serial.Serial(port='/dev/ttyAMA0',
 					baudrate = 115200,
 					parity=serial.PARITY_NONE,
 					stopbits=serial.STOPBITS_ONE,
-               		bytesize=serial.EIGHTBITS              		
+               		bytesize=serial.EIGHTBITS,
+					timeout=1              		
 					)
 
-#xonxoff=True
-#thread =threading.Thread(target=thread_serial_read, args=(ser, ))
-'''
+
+try:
+   thread.start_new_thread( L2P_CMD_Pulling, (2, ) )
+   print('Start CMD Pulling')
+except:
+   print('Error: unable to start thread')
+
+while 1:
+	msgGen = ser.readline()
+	print(msgGen)
+	print('next')
+	time.sleep(20)
+	pass
+
+
 StampTIME = str(datetime.now())
 StampTIME = StampTIME[:16]
 StampTIME = StampTIME.replace(' ',':')
+
+#print(L2P_CMD_Pulling())
+
+'''
 imageName = StampTIME + '.jpg'
 imageCapture(imageName, imagePATH)
 '''
@@ -201,14 +288,28 @@ imageCapture(imageName, imagePATH)
 
 # MUST Fix length = 31
 
-#msg = ':0101100102030405060708090A65\r\n'
-msg  = ':01020A080300000000000097AC55\r\n'
-print("TX:", msg)
-ser.write(msg)
+'''
+#msg = ':01010A0902030405060708090A65\r\n'
+msg  = ':01020A0800000000000000045655\r\n'
+
+msgGen = createMSGForSTM32('SET','01','08', '05', '456')
+#print(msg)
+#print(msgGen)
+
+print("TX:", msgGen)
+ser.write(msgGen)
+msgGen = ser.readline()
+print("RX:", msgGen)
+'''
+
+
+'''
+time.sleep(1)
 msg = ser.readline()
 print("RX:", msg)
-print('finish')
 
+print('finish')
+'''
 
 '''
 #---------------------------------------------------------------------------------------------------
@@ -238,8 +339,11 @@ img_file.close()
 '''
 #---------------------------------------------------------------------------------------------------
 # Test push data to Data Logger Database
+StampTIME = str(datetime.now())
+StampTIME = StampTIME[:16]
+StampTIME = StampTIME.replace(' ',':')
 url = Server + page_pushDataLoggerDB
-result = pushDataLoggerDB(url, authMSG, 'sensor1', 123, str(StampTIME))
+result = pushDataLoggerDB(url, authMSG, 'Board1','Sensor1', '123', str(StampTIME))
 print(result)
 '''
 
@@ -249,8 +353,6 @@ print(result)
 url = Server + page_dropAllDB
 result = showDB(url, authMSG)
 print(result)
-
-
 
 while True:
     ser.write("\r\nSay something:")

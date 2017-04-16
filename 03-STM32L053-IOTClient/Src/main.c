@@ -57,10 +57,14 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+
 /* UART handler declaration */
 UART_HandleTypeDef UartHandle;
+
+/* Flag */
 __IO ITStatus UartRXReady = RESET;
 __IO ITStatus UartTXReady = RESET;
+__IO ITStatus TIM1 = RESET;
 
 /* Buffer used for transmission */
 uint8_t aTxBuffer[TXBUFFERSIZE];
@@ -68,12 +72,21 @@ uint8_t aTxBuffer[TXBUFFERSIZE];
 /* Buffer used for reception */
 //uint8_t aRxBuffer[RXBUFFERSIZE];
 uint8_t aRxBuffer[RXBUFFERSIZE];
+uint8_t EmptyRxBuffer[RXBUFFERSIZE];
 
+/* RaspberryPi message */
 RPiMessage RpiMSG;
 
+/* Sensor Value and Sensor Configulation  */
 uint32_t SensorValueArray[10];
-
 uint16_t SensorConfigArray[10][10];
+
+/* TIM handle declaration */
+TIM_HandleTypeDef    TimHandle;
+
+/* Prescaler declaration */
+uint32_t uwPrescalerValue = 0;
+uint32_t timeCount = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
@@ -102,6 +115,35 @@ int main(void)
 
   /* Configure the system clock to 32 Mhz */
   SystemClock_Config();
+
+  /* Compute the prescaler value to have TIMx counter clock equal to 10 KHz */
+  uwPrescalerValue = (uint32_t) ((SystemCoreClock / 10000) - 1);
+
+  /* Set TIMx instance */
+  TimHandle.Instance = TIMx;
+
+   /** Initialize TIMx peripheral as follow:
+   *   + Period = 10000 - 1
+   *   + Prescaler = SystemCoreClock/10000 Note that APB clock = TIMx clock if
+   *				 APB prescaler = 1.
+   *   + ClockDivision = 0
+   *   + Counter direction = Up
+   */
+  TimHandle.Init.Period = 10000 - 1;
+  TimHandle.Init.Prescaler = uwPrescalerValue;
+  TimHandle.Init.ClockDivision = 0;
+  TimHandle.Init.CounterMode = TIM_COUNTERMODE_UP;
+
+  if(HAL_TIM_Base_Init(&TimHandle) != HAL_OK)
+  {
+	 Error_Handler();
+  }
+
+  /* Start Channel1 */
+  if(HAL_TIM_Base_Start_IT(&TimHandle) != HAL_OK)
+  {
+	 Error_Handler();
+  }
 
   UartHandle.Instance        = USARTx;
   UartHandle.Init.BaudRate   = 115200;
@@ -167,7 +209,7 @@ int main(void)
 	  // Send Message to RPi ----------------------------------------------------------
 	  if(UartTXReady == SET)
 	  {
-		  UartTXReady = RESET;
+ 		  UartTXReady = RESET;
 
 		  if(HAL_UART_Transmit_IT(&UartHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE)!= HAL_OK)
 		  {
@@ -181,7 +223,20 @@ int main(void)
 		  UartTXReady = RESET;
 	  }
 
-	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	  // 1 Second Timer ---------------------------------------------------------------
+	  if(TIM1 == SET)
+	  {
+		  TIM1 = RESET;
+		  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		  timeCount++;
+		  if(timeCount >= 5)
+		  {
+			  timeCount=0;
+			  //strcpy(aTxBuffer, EmptyRxBuffer);
+			  strcpy(aTxBuffer, "Report Something to RPi......\r\n");
+			  UartTXReady = SET;
+		  }
+	  }
   }
 }
 
@@ -221,6 +276,8 @@ void ProcessCMD(RPiMessage *RpiMSG)
 		* */
 		sensorNumber = RpiMSG->msg[4];
 		sensorValue = SensorValueArray[sensorNumber];
+
+		//memset(aTxBuffer, '\0', TXBUFFERSIZE);
 
 		// Sensor value is int32
 		// It use 4 byte to transmit
@@ -305,6 +362,7 @@ void ProcessCMD(RPiMessage *RpiMSG)
 
 		SensorConfigArray[SensorNumber][SensorParamNum] = SensorConfigValue;
 
+		//memset(aTxBuffer, '\0', TXBUFFERSIZE);
 		strcpy(aTxBuffer, aRxBuffer);
 		UartTXReady = SET;
 	}
@@ -426,6 +484,18 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
   /* Set transmission flag: trasfer complete*/
   UartRXReady = SET;
+}
+
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* Toggle LED2 */
+  TIM1 = SET;
 }
 
 
