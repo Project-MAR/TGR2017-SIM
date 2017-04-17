@@ -131,38 +131,6 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=replayText))
 
-#---------------------------------------------------------------------------------------
-def Apple():
-
-    url = 'https://api.line.me/v2/bot/message/push'
-
-    link = 'https://www.dropbox.com/s/yf86f2rcp80d2rl/Apple.jpg?dl=0'
-    link = link.replace('www.dropbox.com','dl.dropboxusercontent.com')
-    link = link.replace('?dl=0','')
-
-    link_tn = 'https://www.dropbox.com/s/t2b04rdi4zrvimr/Apple_tn.jpg?dl=0'
-    link_tn = link_tn.replace('www.dropbox.com','dl.dropboxusercontent.com')
-    link_tn = link_tn.replace('?dl=0','')
-
-    headers = {
-        'Content-Type'  :'application/json',
-        'Authorization' : 'Bearer {' + CHANNEL_ACCESS_TOKEN + '}'
-    }
-
-    payload = {
-        'to'       : RAMID,
-        'messages'  : [
-            {
-                'type'               : 'image',
-                'originalContentUrl' : link,
-                'previewImageUrl'    : link_tn
-            }
-        ]
-    }
-
-    resp = requests.post(url, headers=headers, data=json.dumps(payload))
-    return json.dumps(payload)
-
 @app.route('/check', methods=['GET'])
 def check():
     result = Apple()
