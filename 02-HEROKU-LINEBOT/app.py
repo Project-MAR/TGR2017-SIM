@@ -132,6 +132,43 @@ def handle_message(event):
         TextSendMessage(text=replayText))
 
 #---------------------------------------------------------------------------------------
+def Apple():
+
+    url = 'https://api.line.me/v2/bot/message/push'
+
+    link = 'https://www.dropbox.com/s/yf86f2rcp80d2rl/Apple.jpg?dl=0'
+    link = link.replace('www.dropbox.com','dl.dropboxusercontent.com')
+    link = link.replace('?dl=0','')
+
+    link_tn = 'https://www.dropbox.com/s/t2b04rdi4zrvimr/Apple_tn.jpg?dl=0'
+    link_tn = link_tn.replace('www.dropbox.com','dl.dropboxusercontent.com')
+    link_tn = link_tn.replace('?dl=0','')
+
+    headers = {
+        'Content-Type'  :'application/json',
+        'Authorization' : 'Bearer {' + CHANNEL_ACCESS_TOKEN + '}'
+    }
+
+    payload = {
+        'to'       : RAMID,
+        'messages'  : [
+            {
+                'type'               : 'image',
+                'originalContentUrl' : link,
+                'previewImageUrl'    : link_tn
+            }
+        ]
+    }
+
+    resp = requests.post(url, headers=headers, data=json.dumps(payload))
+    return json.dumps(payload)
+
+@app.route('/check', methods=['GET'])
+def check():
+    result = Apple()
+    return json.dumps(result)
+
+#---------------------------------------------------------------------------------------
 # Return User ID of Line user
 #---------------------------------------------------------------------------------------
 @app.route('/GETUID', methods=['GET'])
@@ -146,9 +183,14 @@ def GETUID():
 @app.route('/PItoLINE', methods=['POST'])
 @auth.login_required
 def PItoLINE():
-    message = request.get_json()
-    message = json.dumps(message)
-    line_bot_api.push_message(RAMID, TextSendMessage(text=message))
+    msg = request.get_json()
+    msg = json.dumps(msg)
+    msg = json.loads(msg)
+
+    LineId  = msg['Id']
+    message = json.dumps(msg['Payload']) 
+
+    line_bot_api.push_message(LineId, TextSendMessage(text=message))
     return json.dumps(message)
 
 #---------------------------------------------------------------------------------------
@@ -158,7 +200,7 @@ def PItoLINE():
 @auth.login_required
 def createDataLoggerDB():
     cur.execute("DROP TABLE IF EXISTS DataLogger")
-    cur.execute("CREATE TABLE DataLogger(Id SERIAL PRIMARY KEY, Name TEXT, Value FLOAT4, StampTIME TEXT)")
+    cur.execute("CREATE TABLE DataLogger(Id SERIAL PRIMARY KEY, BoardName TEXT, SensorName TEXT, Value FLOAT4, StampTIME TEXT)")
     conn.commit()
     return json.dumps({'result':'success'})
 
@@ -173,8 +215,8 @@ def pushDataLoggerDB():
     msg = json.dumps(msg)
     msg = json.loads(msg)
 
-    query =  "INSERT INTO DataLogger (Name, Value, StampTIME) VALUES (%s, %s, %s);"
-    data = (msg['Name'], msg['Value'], msg['StampTIME'])
+    query =  "INSERT INTO DataLogger (BoardName, SensorName, Value, StampTIME) VALUES (%s, %s, %s, %s);"
+    data = (msg['BoardName'], msg['SensorName'], msg['Value'], msg['StampTIME'])
     cur.execute(query, data)
     conn.commit()
 
@@ -271,7 +313,7 @@ def pushImgDB():
 def createCMDListDB():
     
     cur.execute("DROP TABLE IF EXISTS CMDListDB")
-    cur.execute("CREATE TABLE CMDListDB(Id SERIAL PRIMARY KEY, target TEXT, action TEXT)")
+    cur.execute("CREATE TABLE CMDListDB(Id SERIAL PRIMARY KEY, Board TEXT, Sensor TEXT, Action TEXT, ConfigNum TEXT, Value TEXT)")
     conn.commit()
 
     return json.dumps({'result':'success'})
@@ -281,10 +323,10 @@ def createCMDListDB():
 #---------------------------------------------------------------------------------------
 def putCMD(msg):
 
-    header, target, action = msg.split(':')
+    header, board, sensor, action, configNum, value = msg.split(':')
 
-    query =  "INSERT INTO CMDListDB (target, action) VALUES (%s, %s);"
-    data = (target, action)
+    query =  "INSERT INTO CMDListDB (Board, Sensor, Action, ConfigNum, Value) VALUES (%s, %s, %s, %s, %s);"
+    data = (board, sensor, action, configNum, value)
     cur.execute(query, data)
     conn.commit()
     return json.dumps({'result':'success'})
@@ -296,19 +338,23 @@ def putCMD(msg):
 @auth.login_required
 def popCMD():
 
-     # SELECT First Record
+    # TODO: pop error when call showCMDListDB(), problem with fetchall ??
+
+    # SELECT First Record
     cur.execute("SELECT * FROM CMDListDB ORDER BY Id ASC LIMIT 1")
     conn.commit()
     result = cur.fetchall()
     indexOfFirstInfo = result
     result = json.dumps(result)
+    #return result
 
     if len(result) == 2: # string of [] == list empty
         return json.dumps({'error':'list is empty'})
 
     # DELETE First Record
-    indexOfFirstInfo = indexOfFirstInfo[0][0] 
-    cur.execute("DELETE FROM CMDListDB WHERE CMDListDB.Id = %s", str(indexOfFirstInfo))
+    #indexOfFirstInfo = json.loads(indexOfFirstInfo)
+    indexOfFirstInfo = indexOfFirstInfo[0][0]
+    cur.execute("DELETE FROM CMDListDB WHERE CMDListDB.Id = %s", (str(indexOfFirstInfo),) )
     conn.commit()
 
     return result
@@ -357,4 +403,5 @@ def dropAllDB():
 
 if __name__ == "__main__":
     app.run()
+
 

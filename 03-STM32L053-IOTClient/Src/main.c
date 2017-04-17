@@ -172,6 +172,7 @@ int main(void)
 
   while (1)
   {
+
 	  // Process Incoming message -----------------------------------------------------
 	  if (UartRXReady == SET)
 	  {
@@ -229,11 +230,11 @@ int main(void)
 		  TIM1 = RESET;
 		  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		  timeCount++;
-		  if(timeCount >= 5)
+		  if(timeCount >= 60)
 		  {
 			  timeCount=0;
-			  //strcpy(aTxBuffer, EmptyRxBuffer);
-			  strcpy(aTxBuffer, "Report Something to RPi......\r\n");
+			  strcpy(aTxBuffer, EmptyRxBuffer);
+			  strcpy(aTxBuffer, "!01:01:50");
 			  UartTXReady = SET;
 		  }
 	  }

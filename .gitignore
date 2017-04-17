@@ -95,3 +95,8 @@ ENV/
 
 #Visual Studio Code: FTP-Sync Config file
 .vscode
+
+#Test Code
+modBus.log
+modBus2.log
+testModBus.py

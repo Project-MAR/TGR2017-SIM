@@ -28,6 +28,10 @@ page_dropAllDB        = 'dropAllDB'
 page_popCMD           = 'popCMD'
 
 
+usernameDB   = ''
+passwordDB   = ''
+LineId1      = ''
+LineToPiMsg  = ''
 
 secretInfo = open(ProjectPATH + '/.env', "r")
 data = secretInfo.readlines()
@@ -50,24 +54,32 @@ for line in data:
 		usernameDB = value
 	elif var == 'PasswordDB':
 		passwordDB = value
+	elif var =='LineId1':
+		LineId1 = value
 
 secretInfo.close()
-#print(usernameDB)
-#print(passwordDB)
+
+'''
+print(usernameDB)
+print(passwordDB)
+print(LineId1)
+'''
 
 authMSG = (usernameDB, passwordDB)
+#print(authMSG)
 
 '''
 ---------------------------------------------------------------------------------------------------
 ***************************************************************************************************
 '''
 
-def PItoLINE(url, authMSG, payload, payloadType='text'):
+def PItoLINE(url, authMSG, LineId, payload, payloadType='text'):
 	
 	headerMSG = {'content-type': 'application/json'}
 
 	message = {
-		'Type'    :payloadType,
+		'Type'    : payloadType,
+		'Id'      : LineId,
 		'Payload' : payload 
 	}
 
@@ -184,55 +196,60 @@ def createMSGForSTM32(msgType, targetBoard, targetSensor, TargetConfigNumber, ta
 		msg += targetValue
 		msg += '55\r\n'
 
-	return msg
+	return str(msg)
 
 # Define a function for the thread
 def L2P_CMD_Pulling(delay):
+	global LineToPiMsg
 	taskDelay = delay
 	url = Server + page_popCMD
 	while True:
-		resp = requests.get(url, auth=authMSG)
-		resp = resp.json()
-		resp = json.dumps(resp)
-		resp = json.loads(resp)
-		#print(resp)
-		if(isinstance(resp, dict)):
-			if(resp.has_key('error')):
-				print('CMD_Pulling: STATUS = No Incoming CMD')
+		if (len(LineToPiMsg) == 0):
+			resp = requests.get(url, auth=authMSG)
+			resp = resp.json()
+			resp = json.dumps(resp)
+			resp = json.loads(resp)
+			#print(resp)
+			if(isinstance(resp, dict)):
+				if(resp.has_key('error')):
+					#print('CMD_Pulling: STATUS = No Incoming CMD')
+					taskDelay = 5
+					pass
+			else:
+				resp = resp[0]
+				#      dbID    BoardID   SensorID  CMDTYPE  SensorCFG   Value
+				print('CMD_Pulling: ',resp[0], resp[1],  resp[2],  resp[3],  resp[4],  resp[5])
 				taskDelay = 1
-				pass
+
+				#Generate message for RPi
+				msgToSTM32 = createMSGForSTM32(resp[3], resp[1], resp[2], resp[4], str(resp[5]))
+				#print('CMD_Pulling: Receive: ', msgToSTM32)
+				LineToPiMsg = msgToSTM32
 		else:
-			resp = resp[0]
-			#      dbID    BoardID   SensorID  CMDTYPE  SensorCFG  Value
-			print(resp[0], resp[1],  resp[2],  resp[3],  resp[4],  resp[5])
-			taskDelay = 1
-
-			#Generate message for RPi
-			msgToSTM32 = createMSGForSTM32(resp[3], resp[1], resp[2], resp[4], str(resp[5]))
-			print('CMD_Pulling: STATUS: Send: ', msgToSTM32)
-
-			ser = serial.Serial(port='/dev/ttyAMA0',
-					baudrate = 115200,
-					parity=serial.PARITY_NONE,
-					stopbits=serial.STOPBITS_ONE,
-               		bytesize=serial.EIGHTBITS              		
-					)
-				
+			#print('wait for empty buffer')
+			pass
+					
 		time.sleep(taskDelay)
 	
 
-	
+def processMSGfromSTM32(ReceiveMSG):
+	if (ReceiveMSG[0] == ':'):
+		print('RX:', ReceiveMSG)
+		result = PItoLINE(Server + page_PItoLINE, authMSG, LineId1, str(ReceiveMSG), payloadType='text')
+	elif (ReceiveMSG[0] == '!'):
+		Board, Sensor, Value = ReceiveMSG.split(':')
+		Board  = Board[1:]
+		Value  = Value.split('\x00')[0]
 
+		print('Save to Database: ',Board, Sensor, Value)
 
-'''
-def messageFromSTM32(data):
-	print(data)
+		StampTIME = str(datetime.now())
+		StampTIME = StampTIME[:16]
+		StampTIME = StampTIME.replace(' ',':')
+		url = Server + page_pushDataLoggerDB
+		result = pushDataLoggerDB(url, authMSG, Board,Sensor, Value, str(StampTIME))
+		print(result)
 
-def thread_serial_read(ser):
-	while True:
-		reading = ser.readline()
-		messageFromSTM32(reading)
-'''
 
 		
 '''
@@ -240,9 +257,6 @@ def thread_serial_read(ser):
 ***************************************************************************************************
 '''
 
-'''
-PIN OUT: GND TX RX
-'''
 ser = serial.Serial(port='/dev/ttyAMA0',
 					baudrate = 115200,
 					parity=serial.PARITY_NONE,
@@ -251,7 +265,6 @@ ser = serial.Serial(port='/dev/ttyAMA0',
 					timeout=1              		
 					)
 
-
 try:
    thread.start_new_thread( L2P_CMD_Pulling, (2, ) )
    print('Start CMD Pulling')
@@ -259,17 +272,29 @@ except:
    print('Error: unable to start thread')
 
 while 1:
-	msgGen = ser.readline()
-	print(msgGen)
+	ReceiveMSG = ''
+	ReceiveMSG = ser.readline()
+	if (ReceiveMSG != ''):
+		processMSGfromSTM32(ReceiveMSG)
+
+
+	if(len(LineToPiMsg) != 0):
+		ser.write(LineToPiMsg)
+		print 'TX:', LineToPiMsg 
+		LineToPiMsg = ''
+
 	print('next')
-	time.sleep(20)
+	time.sleep(1)
 	pass
 
 
+
+
+'''
 StampTIME = str(datetime.now())
 StampTIME = StampTIME[:16]
 StampTIME = StampTIME.replace(' ',':')
-
+'''
 #print(L2P_CMD_Pulling())
 
 '''
@@ -314,8 +339,8 @@ print('finish')
 '''
 #---------------------------------------------------------------------------------------------------
 # Test Push message to line
-#result = PItoLINE(Server + page_PItoLINE, authMSG, 'APPLE', payloadType='text')
-#print(result)
+result = PItoLINE(Server + page_PItoLINE, authMSG, LineId1, 'APPLE', payloadType='text')
+print(result)
 '''
 
 '''
