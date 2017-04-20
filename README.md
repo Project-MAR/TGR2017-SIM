@@ -5,10 +5,12 @@
 
 ---
 
-### 01-python-REST
-   This folder provide a basic example for RESTful API with python-2.7. Two important module for learning are
-      - [Flask](http://flask.pocoo.org/): A microframework for web development.
-      - [requests](http://docs.python-requests.org/en/master/): Non-GMO HTTP library for Python. 
+### 01-python-REST   
+   
+ This folder provide a basic example for RESTful API with python-2.7. Two important module for learning are
+    - [Flask](http://flask.pocoo.org/0: A microframework for web development.
+    - [requests](http://docs.python-requests.org/en/master/): Non-GMO HTTP library for Python.   
+  
 ---
 
 ### 02-HEROKU-LINEBOT
