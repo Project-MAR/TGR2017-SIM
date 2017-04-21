@@ -349,8 +349,8 @@ https://ogma-dev.github.io/posts/simple-flask-webhook/
    
 ### Usefull links
    
-https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
-https://realpython.com/blog/python/api-integration-in-python/
-http://python-eve.org/
+https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask   
+https://realpython.com/blog/python/api-integration-in-python/   
+http://python-eve.org/   
 
 
