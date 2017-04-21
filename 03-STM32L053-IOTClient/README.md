@@ -2,6 +2,28 @@
 
 ### STM32 toolchain
 
+### SETUP
+
+1. Install JDK
+```sh
+sudo apt-get install default-jdk
+```
+
+2. Installl Eclipse Neon 3 (download [here](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)) using C/C++ for default workspace.   
+   
+3. Install the GNU ARM plug-ins for Eclipse (via Eclipse Marketplace [here](https://marketplace.eclipse.org/content/gnu-arm-eclipse))   
+
+4. Install GCC for ARM here (here)[https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads]   
+
+5. Setup openOCD v0.10.0, Use pre-build binary from [here](https://github.com/gnuarmeclipse/openocd/releases)   
+Test and make sure you can connect to gdb server on STM32 board via openOCD!!!   
+
+6. Setup Eclipse + GCC + FreeRTOS for STM32
+https://sourceforge.net/projects/freertos/?source=typ_redirect   
+https://www.embarcados.com.br/gnu-arm-cross-toolchain-eclipse-freertos-gcc-parte-1/   
+http://www.carminenoviello.com/2015/06/22/running-freertos-stm32nucleo-free-gcceclipse-toolchain/   
+
+
 #### STLINK
 
 Setting up a GCC/Eclipse toolchain for STM32Nucleo [here](http://www.carminenoviello.com/2014/12/28/setting-gcceclipse-toolchain-stm32nucleo-part-1/)     
