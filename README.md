@@ -1,6 +1,4 @@
-# temp
-
-### System Overview
+## System Overview
 ![alt tag](https://github.com/Project-MAR/TGR2017-SIM/blob/master/img/overallSystem.png)
 
 ---
