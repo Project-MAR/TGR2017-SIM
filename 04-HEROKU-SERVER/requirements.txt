@@ -1,4 +1,0 @@
-gunicorn
-Flask
-flask_httpauth
-responses
