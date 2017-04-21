@@ -1,5 +1,7 @@
 ### 02-HEROKU-LINEBOT
 
+> Credentials and other sensitive configuration values should not be committed to source-control. In Git exclude the .env file with: echo .env >> .gitignore.
+
 ### Usefull link
    
  
