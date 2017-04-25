@@ -27,6 +27,7 @@ curl -i http://localhost:8888/
 
 Or you can also see the output from [web browser](http://127.0.0.1:8888/) too.
 
+---
 
 ### GET
 
@@ -73,6 +74,8 @@ curl -i http://localhost:8888/todo/api/v1.0/tasks/1
 ``` 
 
 Or you can also see the output from [web browser](http://localhost:8888/todo/api/v1.0/tasks/1).
+
+---
 
 ### POST
 
@@ -141,6 +144,8 @@ Date: Fri, 24 Mar 2017 01:46:32 GMT
 }
 ```
 
+---
+
 ### PUT
 
 > run REST-API-Full.py to see 'PUT' method
@@ -191,6 +196,7 @@ Date: Fri, 24 Mar 2017 02:10:35 GMT
 ```
 Note that 'done' is change to 'true'
 
+---
 
 ### DELETE
 
@@ -259,6 +265,8 @@ Date: Fri, 24 Mar 2017 02:23:57 GMT
 
 ```
 
+---
+
 ### Basic Authentication for REST
 
 https://github.com/miguelgrinberg/flask-httpauth
@@ -310,6 +318,8 @@ Date: Fri, 24 Mar 2017 03:17:25 GMT
 ```
 
 TODO: Digest Access Authentication
+
+---
 
 ### Webhook
 
