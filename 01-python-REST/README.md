@@ -25,7 +25,7 @@ Use curl to see the response from Flask
 curl -i http://localhost:8888/
 ```
 
-Or you can also see the output from [web brownser](http://127.0.0.1:8888/) too.
+Or you can also see the output from [web browser](http://127.0.0.1:8888/) too.
 
 
 ### GET
@@ -72,7 +72,7 @@ You can get a specific data by using index
 curl -i http://localhost:8888/todo/api/v1.0/tasks/1
 ``` 
 
-Or you can also see the output from [web brownser](http://localhost:8888/todo/api/v1.0/tasks/1).
+Or you can also see the output from [web browser](http://localhost:8888/todo/api/v1.0/tasks/1).
 
 ### POST
 
@@ -339,14 +339,17 @@ curl template
 ```sh
 curl -i http://localhost/task -X POST -u user:pass -H "Content-Type:application/json" -d '{"key":"data"}'
 ```
-
+   
+---
+   
 Original
 https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 
 Webhook
 https://ogma-dev.github.io/posts/simple-flask-webhook/
    
-   
+---
+      
 ### Usefull links
    
 https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask   
