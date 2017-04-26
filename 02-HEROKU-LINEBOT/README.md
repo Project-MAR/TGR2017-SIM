@@ -1,8 +1,6 @@
-> Credentials and other sensitive configuration values should not be committed to source-control. In Git exclude the .env file with: echo .env >> .gitignore.
-
----
-
 ### 02-HEROKU-LINEBOT
+
+> Credentials and other sensitive configuration values should not be committed to source-control. In Git exclude the .env file with: echo .env >> .gitignore.
    
  This folder contain a template (also an example for request/responses based on RESTful API). If you don't familiar with HEROKU (Like me), You should go through [Getting Started on Heroku with Python](https://devcenter.heroku.com/articles/getting-started-with-python#introduction) first.
    
