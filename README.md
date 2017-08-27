@@ -2,6 +2,7 @@
 ![alt tag](https://github.com/Project-MAR/TGR2017-SIM/blob/master/img/overallSystem.png)
    
 This Project try to build an IoT System for Smart Farm. This system use STM32 as an IoT node  for control the water pump, measure temperature, humidity, soil moisture and communicate with the server using ModBus Protocol. A Raspberry Pi Board act as a local server. It control a watering time, taking a picture and communicate with Cloud Server using REST API. A Cloud Server act as a center of the communication between a local server and LINE Server. Users can interact with the system such as monitor the operation of the system or get a picture from a local server via LINE Application.
+   
 ---
 
 ### 01-python-REST   
